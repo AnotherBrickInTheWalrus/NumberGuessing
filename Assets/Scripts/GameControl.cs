@@ -58,4 +58,24 @@ public class GameControl : MonoBehaviour
         List<int> triangles = new List<int>{1,3,6,10,15,21,28,36,45};
         return triangles.Contains(sum);
     }
+
+    public static bool SumIsRepeat(int num){
+        int sum = SumOfDigits(num);
+        return sum%11 == 0;
+    }
+
+    public static bool SumIsFactorOf100(int num){
+        int sum = SumOfDigits(num);
+        List<int> factors = new List<int>{1,2,4,5,10,20,25,50};
+        return factors.Contains(sum);
+    }
+
+    public static bool SumIsLessThan10(int num){
+        int sum = SumOfDigits(num);
+        return sum<10;
+    }
+
+    public static bool IsPowerOf2(int num){
+        return Math.Log(num, 2)%1 == 0;
+    }
 }
