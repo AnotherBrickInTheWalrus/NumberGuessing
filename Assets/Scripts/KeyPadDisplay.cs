@@ -40,4 +40,21 @@ public class KeyPadDisplay : MonoBehaviour
     {
         text.text += 7.ToString();
     }
+    public void digit8()
+    {
+        text.text += 8.ToString();
+    }
+    public void digit9()
+    {
+        text.text += 9.ToString();
+    }
+    public void digit0()
+    {
+        text.text += 0.ToString();
+    }
+    public void digitRem()
+    {
+        text.text = text.text.Substring(0,text.text.Length-1);
+    }
+
 }
