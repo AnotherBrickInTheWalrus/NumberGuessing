@@ -5,6 +5,7 @@ using System.Collections.Generic;
 
 public class GameControl : MonoBehaviour
 {
+    public string CurrentGuess;
     public int GuessesRemaining;
     public int NumOfDigits;
     public int NumOfRules;
