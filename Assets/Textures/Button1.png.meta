@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: f4dd03842dcbd4b46866bf15655487ea
+guid: 977d258d00fb3ee469519febda7dc3d9
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1361244320271735440
-    second: KP7_0
+      213: 3502715887467967171
+    second: Button1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,17 +96,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: KP7_0
+      name: Button1_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1000
-        height: 1000
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 09a90524f7c14e210800000000000000
-      internalID: 1361244320271735440
+      spriteID: 3c235ad9a852c9030800000000000000
+      internalID: 3502715887467967171
       vertices: []
       indices: 
       edges: []
@@ -135,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      KP7_0: 1361244320271735440
+      Button1_0: 3502715887467967171
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
