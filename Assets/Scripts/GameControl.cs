@@ -1,3 +1,4 @@
+
 using UnityEngine;
 using System;
 using System.Collections.Generic;
@@ -16,6 +17,7 @@ public class GameControl : MonoBehaviour
         GuessedNumbers = new List <int> {};
     }
 
+    /*
     // Update is called once per frame
     void Update()
     {
@@ -53,4 +55,5 @@ public class GameControl : MonoBehaviour
         List<int> triangles = new List<int>{1,3,6,10,15,21,28,36,45};
         return squares.Contains(sum);
     }
+*/
 }
