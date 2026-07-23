@@ -47,4 +47,10 @@ public class GameControl : MonoBehaviour
         List<int> squares = new List<int>{1,4,9,16,25,36,49};
         return squares.Contains(sum);
     }
+
+    public static bool SumIsTriangular(int num){
+        int sum = SumOfDigits(num);
+        List<int> triangles = new List<int>{1,3,6,10,15,21,28,36,45};
+        return squares.Contains(sum);
+    }
 }
