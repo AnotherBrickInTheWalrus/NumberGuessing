@@ -1,14 +1,17 @@
 using JetBrains.Annotations;
 using UnityEngine;
 using TMPro;
+using System;
 
 public class KeyPadDisplay : MonoBehaviour
 {
 
     public TextMeshProUGUI text;
+    public GameObject ctrl;
     void Start()
     { 
         text = GetComponent<TextMeshProUGUI>();
+        ctrl = GameObject.Find("GameController");
     }
 
     public void digit(int number)
@@ -18,6 +21,7 @@ public class KeyPadDisplay : MonoBehaviour
             text.text += number.ToString();
         }
     }
+
     public void digitRem()
     {
         if (text.text.Length > 0)
@@ -26,4 +30,8 @@ public class KeyPadDisplay : MonoBehaviour
         }
     }
 
+    public void tryNum()
+    {
+        ctrl.GetComponent<GameControl>().AddNumToGuesses(Convert.ToInt32(text.text));
+    }
 }
