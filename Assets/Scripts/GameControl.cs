@@ -24,7 +24,7 @@ public class GameControl : MonoBehaviour
     }
 
     public void AddNumToGuesses(int num){
-        GuessedNumbers += new List<int>{num};
+        GuessedNumbers.Add(num);
     }
 
     public static int SumOfDigits(int x){
@@ -56,6 +56,6 @@ public class GameControl : MonoBehaviour
     public static bool SumIsTriangular(int num){
         int sum = SumOfDigits(num);
         List<int> triangles = new List<int>{1,3,6,10,15,21,28,36,45};
-        return squares.Contains(sum);
+        return triangles.Contains(sum);
     }
 }
