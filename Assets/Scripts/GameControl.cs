@@ -17,12 +17,16 @@ public class GameControl : MonoBehaviour
         GuessedNumbers = new List <int> {};
     }
 
-    /*
     // Update is called once per frame
     void Update()
     {
         
     }
+
+    public void AddNumToGuesses(int num){
+        GuessedNumbers += new List<int>{num};
+    }
+    /*
 
     public static int SumOfDigits(int num){
         return x%10+x/10%10+x/100%10+x/1000%10+x/10000%10+x/100000%10;
