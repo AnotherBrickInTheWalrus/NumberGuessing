@@ -21,4 +21,9 @@ public class GameControl : MonoBehaviour
     {
         
     }
+
+    public static Func<int,bool> DivisbleBy(int Divisor){
+        Func<int,bool> div;
+        return div = x => x % Divisor == 0;
+    }
 }
