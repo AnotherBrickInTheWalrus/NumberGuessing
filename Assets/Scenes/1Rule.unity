@@ -2841,7 +2841,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   GuessesRemaining: 0
-  NumOfDigits: 5
+  NumOfDigits: 3
   NumOfRules: 0
   GuessedNumbers: 
   currentGuess: 

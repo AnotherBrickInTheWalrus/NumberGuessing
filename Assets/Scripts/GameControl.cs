@@ -15,6 +15,7 @@ public class GameControl : MonoBehaviour
     void Start()
     {
         GuessedNumbers = new List <int> {};
+        GuessResults = new List<List<bool>> {};
     }
 
     // Update is called once per frame
@@ -25,6 +26,10 @@ public class GameControl : MonoBehaviour
 
     public void AddNumToGuesses(int num){
         GuessedNumbers.Add(num);
+    }
+
+    public void AddResultToGuesses(List<bool> result){
+        GuessResults.Add(result);
     }
 
     public static int SumOfDigits(int x){
