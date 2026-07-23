@@ -84,4 +84,16 @@ public class GameControl : MonoBehaviour
     public static bool IsPowerOf2(int num){
         return Math.Log(num, 2)%1 == 0;
     }
+
+    public static bool IsPalindrome(int num){
+        numstring = num.ToString();
+        len = numstring.Length;
+        len = len/2;
+        for (int i=0; i<len; i++){
+            if (numstring[i] != numstring[-i]){
+                return false;
+            }
+        }
+        return true;
+    }
 }
