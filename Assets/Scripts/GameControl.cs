@@ -23,7 +23,7 @@ public class GameControl : MonoBehaviour
     }
 
     public static int SumOfDigits(int num){
-        return x%10+x/10%10+x/100%10+x/1000%10+x/10000%10+x/10000%10;
+        return x%10+x/10%10+x/100%10+x/1000%10+x/10000%10+x/100000%10;
     }
 
     public static Func<int,bool> DivisbleBy(int Divisor){
@@ -38,7 +38,13 @@ public class GameControl : MonoBehaviour
 
     public static bool SumIsPrime(int num){
         int sum = SumOfDigits(num);
-        List<int> squares = new List<int>{2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59};
+        List<int> primes = new List<int>{2,3,5,7,11,13,17,19,23,29,31,37,41,43,47,53,59};
+        return primes.Contains(sum);
+    }
+
+    public static bool SumIsSquare(int num){
+        int sum = SumOfDigits(num);
+        List<int> squares = new List<int>{1,4,9,16,25,36,49};
         return squares.Contains(sum);
     }
 }
