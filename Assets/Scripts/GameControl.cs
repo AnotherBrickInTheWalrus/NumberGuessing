@@ -26,4 +26,9 @@ public class GameControl : MonoBehaviour
         Func<int,bool> div;
         return div = x => x % Divisor == 0;
     }
+
+    public static Func<int,bool> SumTo(int Sum){
+        Func<int,bool> sum;
+        return sum = x => x%10+x/10%10+x/100%10+x/1000%10+x/10000%10+x/10000%10 == Sum;
+    }
 }
