@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 63c633e5dba1e1c4e9e8768c29dd5bda
+guid: 30f495d3d42400e4ca23aa0bcbf14ae5
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -7783073573070767509
-    second: KP8_0
+      213: 2986095105091660353
+    second: Button2_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,17 +96,30 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 4
+    buildTarget: WebGL
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    ignorePlatformSupport: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: KP8_0
+      name: Button2_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 1000
-        height: 1000
+        width: 256
+        height: 256
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -115,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: b6af26062d7fcf390800000000000000
-      internalID: -7783073573070767509
+      spriteID: 14a65845dadb07920800000000000000
+      internalID: 2986095105091660353
       vertices: []
       indices: 
       edges: []
@@ -135,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      KP8_0: -7783073573070767509
+      Button2_0: 2986095105091660353
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
