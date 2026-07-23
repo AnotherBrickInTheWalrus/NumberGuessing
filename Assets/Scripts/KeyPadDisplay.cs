@@ -16,7 +16,7 @@ public class KeyPadDisplay : MonoBehaviour
 
     public void digit(int number)
     {
-        if (text.text.Length < 5)
+        if (text.text.Length < ctrl.GetComponent<GameControl>().NumOfDigits)
         {
             text.text += number.ToString();
         }
@@ -32,6 +32,9 @@ public class KeyPadDisplay : MonoBehaviour
 
     public void tryNum()
     {
-        ctrl.GetComponent<GameControl>().AddNumToGuesses(Convert.ToInt32(text.text));
+        if (text.text.Length == ctrl.GetComponent<GameControl>().NumOfDigits)
+        {
+            ctrl.GetComponent<GameControl>().AddNumToGuesses(Convert.ToInt32(text.text));
+        }
     }
 }
