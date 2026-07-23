@@ -29,7 +29,7 @@ public class GameControl : MonoBehaviour
     }
 
     public void AddResultToGuesses(List<bool> result){
-        GuessResults.Add(num);
+        GuessResults.Add(result);
     }
 
     public static int SumOfDigits(int x){
