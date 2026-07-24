@@ -48,7 +48,14 @@ public class GameControl : MonoBehaviour
             {"All the digits are unique", IsPandigital},
             {"None of the digits are unique", NonUnique},
             {"Each digit is greater than the previous", Ascending},
-            {"Each digit is smaller than the previous", Descending}};
+            {"Each digit is smaller than the previous", Descending},
+            {"Contains a 'Y' when spelt out", ContainsY},
+            {"No adjacent equal digits", NoAdjacentEqual},
+            {"Last 2 digits divisible by 8", LastTwoDivisible8},
+            {"Last 2 digits divisible by 3", LastTwoDivisible3},
+            {"Last 2 digits the same", LastTwoSame},
+            {"Has 3 consecutive identical digits", ThreeConsecutiveSame},
+            {"Every other digit is the same", EveryOtherSame} };
         AllRules = new List<Dictionary<string, Func<int, bool>>> { SumRules, DivRules, ContRules, MiscRules };
     }
 
@@ -307,5 +314,71 @@ public class GameControl : MonoBehaviour
             }
         }
         return true;
+    }
+
+
+
+    public bool NoAdjacentEqual(int x)
+    {
+        int PrevDigit = x % 10;
+        for (int i = 1; i < NumOfDigits; i++) {
+            int CurrentDigit = x / Convert.ToInt32(Math.Pow(10, i)) % 10;
+            if (CurrentDigit == PrevDigit) {
+                return false;
+            }
+            PrevDigit = CurrentDigit;
+        }
+        return true;
+    }
+
+
+    public bool LastTwoDivisible3(int x) {
+        int Last2 = x % 10 + ((x / 10) % 10) * 10;
+        return Last2 % 3 == 0;
+    }
+
+    public bool LastTwoDivisible8(int x) {
+        int Last2 = x % 10 + ((x / 10) % 10) * 10;
+        return Last2 % 8 == 0;
+    }
+
+    public bool LastTwoSame(int x) {
+        return x % 10 == (x / 10) % 10;
+    }
+
+    public bool ThreeConsecutiveSame(int x) {
+        int PrevPrevDigit = x % 10;
+        int PrevDigit = (x / 10) % 10;
+        for (int i = 2; i < NumOfDigits; i++) {
+            int CurrentDigit = x / Convert.ToInt32(Math.Pow(10, i)) % 10;
+            if (CurrentDigit == PrevDigit && CurrentDigit == PrevPrevDigit) {
+                return true;
+            }
+            PrevPrevDigit = PrevDigit;
+            PrevDigit = CurrentDigit;
+        }
+        return false;
+    }
+
+    public bool EveryOtherSame(int x) {
+        int PrevDigit = x % 10;
+        bool WorkiesOne = true;
+        bool WorkiesTwo = true;
+        for (int i = 2; i < NumOfDigits; i = i + 2) {
+            int CurrentDigit = x / Convert.ToInt32(Math.Pow(10, i)) % 10;
+            if (CurrentDigit != PrevDigit) {
+                WorkiesOne = false;
+            }
+            PrevDigit = CurrentDigit;
+        }
+        PrevDigit = (x / 10) % 10;
+        for (int i = 3; i < NumOfDigits; i = i + 2) {
+            int CurrentDigit = x / Convert.ToInt32(Math.Pow(10, i)) % 10;
+            if (CurrentDigit != PrevDigit) {
+                WorkiesTwo = false;
+            }
+            PrevDigit = CurrentDigit;
+        }
+        return WorkiesOne || WorkiesTwo;
     }
 }
