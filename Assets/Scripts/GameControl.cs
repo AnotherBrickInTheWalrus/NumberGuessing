@@ -33,9 +33,9 @@ public class GameControl : MonoBehaviour
             {"Sum of the digits is a factor of 100", SumIsFactorOf100},
             {"Sum of the digits has repeated digits", SumIsRepeat}};
         Dictionary<string, Func<int, bool>> DivRules = new Dictionary<string, Func<int, bool>> {
-            {"The number is divisible by 4", DivisibleBy(4)},
+            {"The number is divisible by 4", DivisibleBy(2)},
             {"The number is divisible by 11", DivisibleBy(11)}};
-        for (int i = 2; i < 9; i = i + 2) DivRules.Add($"The number is divisible by {i}",DivisibleBy(i));
+        for (int i = 3; i < 9; i = i + 2) DivRules.Add($"The number is divisible by {i}",DivisibleBy(i));
         Dictionary<string, Func<int, bool>> ContRules = new Dictionary<string, Func<int, bool>> {};
         for (int i = 2; i < 10; i++) ContRules.Add($"The number contains a {i}", Contains(i));
         Dictionary<string, Func<int, bool>> MiscRules = new Dictionary<string, Func<int, bool>> {
@@ -108,6 +108,7 @@ public class GameControl : MonoBehaviour
             TempRuleSet.Add(randomElement.Key, randomElement.Value);
             ruleset = AllRules[rnd.Next(AllRules.Count)];
             while (UsedSets.Contains(ruleset)) {ruleset = AllRules[rnd.Next(AllRules.Count)]; }
+            UsedSets.Add(ruleset);
             randomElement = ruleset.ElementAt(rnd.Next(ruleset.Count));
             TempRuleSet.Add(randomElement.Key, randomElement.Value);
         }
