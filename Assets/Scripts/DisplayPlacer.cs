@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class DisplayPlacer : MonoBehaviour
 {
-    private Vector2 MidPos = new Vector2(10f, 10f);
+    public Vector2 MidPos = new Vector2(-290f, 180f);
     private GameControl Control;
     public GameObject Digit;
     private GameObject newDigit;
@@ -19,7 +19,8 @@ public class DisplayPlacer : MonoBehaviour
             Debug.Log("Create");
             newDigit = Instantiate(Digit, MidPos, Quaternion.identity);
             newDigit.name = currentDigit.ToString();
-            //Transform.SetParent(GameObject.Find("Canvas").transform);
+            newDigit.transform.parent = GameObject.Find("Canvas").transform;
+            newDigit.transform.localPosition = MidPos;
         }
     }
 
