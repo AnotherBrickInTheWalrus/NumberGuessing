@@ -17,6 +17,8 @@ public class GameControl : MonoBehaviour
     {
         GuessedNumbers = new List <int> {};
         GuessResults = new List<List<bool>> {};
+        Debug.Log(IsPalindrome(12321));
+        Debug.Log(IsPalindrome(12322));
     }
 
     // Update is called once per frame
@@ -86,12 +88,11 @@ public class GameControl : MonoBehaviour
     }
 
     public static bool IsPalindrome(int num){
-        string numstring;
-        numstring = num.ToString();
+        string numstring = num.ToString();
         int len = numstring.Length;
-        len = len/2;
-        for (int i=0; i<len; i++){
-            if (numstring[i] != numstring[-i]){
+        int halflen = len/2;
+        for (int i=0; i<halflen; i++){
+            if (numstring[i] != numstring[len-i-1]){
                 return false;
             }
         }
