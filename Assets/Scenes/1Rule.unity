@@ -876,7 +876,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 803.5399, y: -407.0006}
+  m_AnchoredPosition: {x: 1429, y: -135}
   m_SizeDelta: {x: 500, y: 0}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1170778787
@@ -965,7 +965,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 181.07227, y: 0.50445557, z: 181.5517, w: -196.60963}
+  m_margin: {x: 181.07227, y: 0.50445557, z: 181.5517, w: -196.60957}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1077,14 +1077,14 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 2054924700}
         m_TargetAssemblyTypeName: GameControl, Assembly-CSharp
-        m_MethodName: addNumToGuesses
+        m_MethodName: CheckNumber
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
           m_IntArgument: 0
           m_FloatArgument: 0
-          m_StringArgument: 
+          m_StringArgument: GameControl.CurrentGuess
           m_BoolArgument: 0
         m_CallState: 2
 --- !u!114 &1353286400
@@ -2331,7 +2331,8 @@ MonoBehaviour:
   NumOfDigits: 4
   NumOfRules: 2
   NumOfGivenRules: 10
-  GuessedNumbers: 
+  LenOfRules: 0
+  GuessedNumbers: []
 --- !u!4 &2054924701
 Transform:
   m_ObjectHideFlags: 0

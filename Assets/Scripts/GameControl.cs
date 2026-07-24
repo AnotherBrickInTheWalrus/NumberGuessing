@@ -12,6 +12,7 @@ public class GameControl : MonoBehaviour
     public int NumOfDigits;
     public int NumOfRules;
     public int NumOfGivenRules;
+    public int LenOfRules;
     public List<string> GuessedNumbers;
     public List<List<bool>> GuessResults;
     public Dictionary<string, Func<int, bool>> UsedRules;
@@ -57,6 +58,7 @@ public class GameControl : MonoBehaviour
             {"Has 3 consecutive identical digits", ThreeConsecutiveSame},
             {"Every other digit is the same", EveryOtherSame} };
         AllRules = new List<Dictionary<string, Func<int, bool>>> { SumRules, DivRules, ContRules, MiscRules };
+        GenerateRuleSet();
     }
 
     void Update() { }
@@ -73,6 +75,13 @@ public class GameControl : MonoBehaviour
             GameObject.Find($"{CurrentGuess.Length}").GetComponent<TextMeshProUGUI>().text = "";
             CurrentGuess = CurrentGuess.Substring(0, CurrentGuess.Length - 1);
         }
+    }
+
+    public void digitDel() {
+        for(int i=1; i<= NumOfDigits; i++){
+            GameObject.Find($"{i}").GetComponent<TextMeshProUGUI>().text = "";
+        }
+        CurrentGuess = "";
     }
 
     public void addNumToGuesses() {
@@ -135,12 +144,23 @@ public class GameControl : MonoBehaviour
                 PossibleRules.Add(randomElement.Key, randomElement.Value);
             }
         }
+        foreach (var kvp in UsedRules){
+            Debug.Log(kvp.Key);
+        }
     }
 
-    public void CheckNumber (string num){
-        List<bool> result = UsedRules.Select(kvp => kvp.Value(Convert.ToInt32(num))).ToList();
-        addNumToGuesses();
-        AddResultToGuesses(result);
+    public void CheckNumber (){
+        if (CurrentGuess.Length == NumOfDigits){
+            List<bool> result = UsedRules.Select(kvp => kvp.Value(Convert.ToInt32(CurrentGuess))).ToList();
+            addNumToGuesses();
+            AddResultToGuesses(result);
+            string print = "";
+            foreach(bool item in result){
+                print += $"{item} ";
+            }
+            Debug.Log(print);
+            digitDel();
+        }
     }
 
     public static int SumOfDigits(int x) {

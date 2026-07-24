@@ -17,7 +17,7 @@ public class GuessesList : MonoBehaviour
     {
         text.text = "";
         
-        foreach (int entry in numbers.GuessedNumbers)
+        foreach (var entry in numbers.GuessedNumbers)
         {
             text.text += $"{entry.ToString()}\n";
         }
