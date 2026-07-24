@@ -13,6 +13,7 @@ public class GameControl : MonoBehaviour
     public List <List<bool>> GuessResults;
     public List <Func<int,bool>> UsedRules;
     public List <Func<int,bool>> PossibleRules;
+    public List <List<Func<int,bool>>> AllRules;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -26,6 +27,7 @@ public class GameControl : MonoBehaviour
         List<Func<int,bool>> ContRules = new List<Func<int,bool>> {};
         for (int i=2;i<10;i++) ContRules.Add(Contains(i));
         List<Func<int,bool>> MiscRules = new List<Func<int,bool>> {IsPowerOf2, IsPalindrome};
+        AllRules = new List<List<Func<int,bool>>> {SumRules, DivRules, ContRules, MiscRules};
     }
 
     // Update is called once per frame
