@@ -42,8 +42,10 @@ public class GameControl : MonoBehaviour
     }
 
     public void digitRem(){
-        GameObject.Find($"{CurrentGuess.Length}").GetComponent<TextMeshProUGUI>().text = "";
-        CurrentGuess = CurrentGuess.Substring(0, CurrentGuess.Length-1);
+        if (CurrentGuess.Length > 0){
+            GameObject.Find($"{CurrentGuess.Length}").GetComponent<TextMeshProUGUI>().text = "";
+            CurrentGuess = CurrentGuess.Substring(0, CurrentGuess.Length-1);
+        }
     }
 
     public void addNumToGuesses(){
