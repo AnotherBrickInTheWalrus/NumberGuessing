@@ -2328,8 +2328,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   CurrentGuess: 
   GuessesRemaining: 0
-  NumOfDigits: 3
-  NumOfRules: 0
+  NumOfDigits: 4
+  NumOfRules: 2
+  NumOfGivenRules: 10
   GuessedNumbers: 
 --- !u!4 &2054924701
 Transform:
