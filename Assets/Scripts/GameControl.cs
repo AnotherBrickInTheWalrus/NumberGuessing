@@ -28,8 +28,9 @@ public class GameControl : MonoBehaviour
         for (int i = 2; i < 9; i=i+2) DivRules.Add(DivisibleBy(i));
         List<Func<int,bool>> ContRules = new List<Func<int,bool>> {};
         for (int i=2;i<10;i++) ContRules.Add(Contains(i));
-        List<Func<int,bool>> MiscRules = new List<Func<int,bool>> {IsPowerOf2, IsPalindrome};
+        List<Func<int,bool>> MiscRules = new List<Func<int,bool>> {IsPowerOf2, IsPalindrome, AllDigitsEven, AllDigitsOdd, AllDigitsPrime, ProductIsSquare, IsPandigital};
         AllRules = new List<List<Func<int,bool>>> {SumRules, DivRules, ContRules, MiscRules};
+        Debug.Log(DivisibleBy(4));
     }
 
     void Update(){}
@@ -154,7 +155,7 @@ public class GameControl : MonoBehaviour
         return true;
     }
 
-    public static bool DigProdSquare(int x){
+    public static bool ProductIsSquare(int x){
         int Prod;
         if (x < 1000){
             Prod = (x % 10) * (x / 10 % 10) * (x / 100 % 10);
@@ -199,7 +200,7 @@ public class GameControl : MonoBehaviour
         return AllEven == 1;
     }
 
-    public bool Pandigital(int x){
+    public bool IsPandigital(int x){
         int[] Digits = new int[6];
         for (int i = 0; i < NumOfDigits; i++){
             int CurrentDigit = x / (Convert.ToInt32(Math.Pow(10, i))) % 10;
