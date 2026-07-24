@@ -2,6 +2,7 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using TMPro;
 
 public class GameControl : MonoBehaviour
@@ -29,14 +30,9 @@ public class GameControl : MonoBehaviour
         for (int i=2;i<10;i++) ContRules.Add(Contains(i));
         List<Func<int,bool>> MiscRules = new List<Func<int,bool>> {IsPowerOf2, IsPalindrome};
         AllRules = new List<List<Func<int,bool>>> {SumRules, DivRules, ContRules, MiscRules};
-        GenerateRules();
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    void Update(){}
 
     public void digit(int number){
         if (CurrentGuess.Length < NumOfDigits){
@@ -60,18 +56,31 @@ public class GameControl : MonoBehaviour
         GuessResults.Add(result);
     }
 
-    public void GenerateRules(){
+    public bool CheckRuleValidity(List<Func<int,bool>> RuleSet){
+        int maxnum = Convert.ToInt32(new string("9",NumOfDigits));
+        int count = 0;
+        for (int i=0; i<maxnum+1; i++){
+            List<bool> result = RuleSet.Select(x => x(i));
+            if (!result.Contains(false)){
+                count += 1;
+            }
+        }
+        return count >= 10;
+    }
+
+    public List<Func<int,bool>> GenerateRuleSet(){
         List<List<Func<int,bool>>> UsedSets = new List<List<Func<int,bool>>> {};
+        List<Func<int,bool>> TempRuleSet = new List<Func<int,bool>> {};
         System.Random rnd = new System.Random();
         if (NumOfRules == 2){
             int randIndex = rnd.Next(AllRules.Count);
             List<Func<int,bool>> ruleset = AllRules[randIndex];
-            UsedRules.Add(ruleset[rnd.Next(ruleset.Count)]);
+            TempRuleSet.Add(ruleset[rnd.Next(ruleset.Count)]);
             ruleset = AllRules[rnd.Next(AllRules.Count)];
             while (UsedSets.Contains(ruleset)){ruleset = AllRules[rnd.Next(AllRules.Count)];}
-            UsedRules.Add(ruleset[rnd.Next(ruleset.Count)]);
+            TempRuleSet.Add(ruleset[rnd.Next(ruleset.Count)]);
         }
-        Debug.Log(UsedRules.Count);
+        return TempRulesList;
     }
 
     public static int SumOfDigits(int x){
