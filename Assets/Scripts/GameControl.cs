@@ -57,10 +57,10 @@ public class GameControl : MonoBehaviour
     }
 
     public bool CheckRuleValidity(List<Func<int,bool>> RuleSet){
-        int maxnum = Convert.ToInt32(new string("9",NumOfDigits));
+        int maxnum = Convert.ToInt32(new string('9',NumOfDigits));
         int count = 0;
         for (int i=0; i<maxnum+1; i++){
-            List<bool> result = RuleSet.Select(x => x(i));
+            List<bool> result = RuleSet.Select(x => x(i)).ToList();
             if (!result.Contains(false)){
                 count += 1;
             }
@@ -80,7 +80,7 @@ public class GameControl : MonoBehaviour
             while (UsedSets.Contains(ruleset)){ruleset = AllRules[rnd.Next(AllRules.Count)];}
             TempRuleSet.Add(ruleset[rnd.Next(ruleset.Count)]);
         }
-        return TempRulesList;
+        return TempRuleSet;
     }
 
     public static int SumOfDigits(int x){
