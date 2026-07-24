@@ -30,7 +30,8 @@ public class GameControl : MonoBehaviour
         for (int i=2;i<10;i++) ContRules.Add(Contains(i));
         List<Func<int,bool>> MiscRules = new List<Func<int,bool>> {IsPowerOf2, IsPalindrome, AllDigitsEven, AllDigitsOdd, AllDigitsPrime, ProductIsSquare, IsPandigital};
         AllRules = new List<List<Func<int,bool>>> {SumRules, DivRules, ContRules, MiscRules};
-        Debug.Log(DivisibleBy(4));
+        Func<int,bool> div = DivisibleBy(4);
+        Debug.Log(div == DivisibleBy(4));
     }
 
     void Update(){}
