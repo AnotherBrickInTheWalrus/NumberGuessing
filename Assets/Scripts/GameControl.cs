@@ -2,6 +2,7 @@
 using UnityEngine;
 using System;
 using System.Collections.Generic;
+using TMPro;
 
 public class GameControl : MonoBehaviour
 {
@@ -36,21 +37,35 @@ public class GameControl : MonoBehaviour
         
     }
 
-    public void GenerateRules(){
-        List<var> UsedSets = new List<var> {};
-        Random rnd = new Random();
-        if (NumOfRules == 2){
-            int randIndex = rnd.Next(AllRules.Count);
-            List<Func<int,bool>> ruleset = AllRules[randIndex];
+    public void digit(int number){
+        if (CurrentGuess.Length < NumOfDigits){
+            CurrentGuess += number.ToString();
+            GameObject.Find($"{CurrentGuess.Length}").GetComponent<TextMeshProUGUI>().text = number.ToString();
         }
     }
 
-    public void AddNumToGuesses(int num){
-        GuessedNumbers.Add(num);
+    public void digitRem(){
+        GameObject.Find($"{CurrentGuess.Length}").GetComponent<TextMeshProUGUI>().text = "";
+        CurrentGuess = CurrentGuess.Substring(0, CurrentGuess.Length-1);
+    }
+
+    public void addNumToGuesses(){
+        if (CurrentGuess.Length == NumOfDigits){
+            GuessedNumbers.Add(Convert.ToInt32(CurrentGuess));
+        }
     }
 
     public void AddResultToGuesses(List<bool> result){
         GuessResults.Add(result);
+    }
+
+    public void GenerateRules(){
+        List<List<Func<int,bool>>> UsedSets = new List<List<Func<int,bool>>> {};
+        System.Random rnd = new System.Random();
+        if (NumOfRules == 2){
+            int randIndex = rnd.Next(AllRules.Count);
+            List<Func<int,bool>> ruleset = AllRules[randIndex];
+        }
     }
 
     public static int SumOfDigits(int x){
