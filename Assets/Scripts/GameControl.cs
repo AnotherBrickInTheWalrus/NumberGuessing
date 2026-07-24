@@ -25,6 +25,7 @@ public class GameControl : MonoBehaviour
         for (int i = 2; i < 9; i=i+2) DivRules.Add(DivisibleBy(i));
         List<Func<int,bool>> ContRules = new List<Func<int,bool>> {};
         for (int i=2;i<10;i++) ContRules.Add(Contains(i));
+        List<Func<int,bool>> MiscRules = new List<Func<int,bool>> {IsPowerOf2, IsPalindrome};
     }
 
     // Update is called once per frame
