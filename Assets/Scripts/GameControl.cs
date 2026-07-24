@@ -138,7 +138,7 @@ public class GameControl : MonoBehaviour
     }
 
     public List<bool> CheckNumber (int num){
-        List<bool> result = RuleSet.Select(kvp => kvp.Value(num)).ToList();
+        List<bool> result = UsedRules.Select(kvp => kvp.Value(num)).ToList();
         return result;
     }
 
