@@ -12,7 +12,7 @@ public class GameControl : MonoBehaviour
     public int NumOfDigits;
     public int NumOfRules;
     public int NumOfGivenRules;
-    public List<int> GuessedNumbers;
+    public List<string> GuessedNumbers;
     public List<List<bool>> GuessResults;
     public Dictionary<string, Func<int, bool>> UsedRules;
     public Dictionary<string, Func<int, bool>> PossibleRules;
@@ -21,7 +21,7 @@ public class GameControl : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        GuessedNumbers = new List<int> { };
+        GuessedNumbers = new List<string> { };
         GuessResults = new List<List<bool>> { };
         UsedRules = new Dictionary<string, Func<int, bool>> { };
         Dictionary<string, Func<int, bool>> SumRules = new Dictionary<string, Func<int, bool>> { 
@@ -77,7 +77,7 @@ public class GameControl : MonoBehaviour
 
     public void addNumToGuesses() {
         if (CurrentGuess.Length == NumOfDigits) {
-            GuessedNumbers.Add(Convert.ToInt32(CurrentGuess));
+            GuessedNumbers.Add(CurrentGuess);
         }
     }
 
@@ -137,9 +137,10 @@ public class GameControl : MonoBehaviour
         }
     }
 
-    public List<bool> CheckNumber (int num){
-        List<bool> result = UsedRules.Select(kvp => kvp.Value(num)).ToList();
-        return result;
+    public void CheckNumber (string num){
+        List<bool> result = UsedRules.Select(kvp => kvp.Value(Convert.ToInt32(num))).ToList();
+        addNumToGuesses();
+        AddResultToGuesses(result);
     }
 
     public static int SumOfDigits(int x) {
