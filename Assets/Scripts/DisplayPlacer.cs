@@ -2,16 +2,19 @@ using UnityEngine;
 
 public class DisplayPlacer : MonoBehaviour
 {
-    private float XMidCoord = 10.0f;
-    private float YMidCoord = 10.0f;
+    private Vector2 MidPos = new Vector2(10f, 10f);
     private GameControl Control;
-    int NumDigits
+    public GameObject Digit;
+    private int NumDigits;
+    private GameObject newDigit;
+    private int currentDigit = 1;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         Control = GameObject.Find("GameController").GetComponent<GameControl>();
+        newDigit = Instantiate(Digit, MidPos, Quaternion.identity);
         
-        
+
     }
 
     // Update is called once per frame
