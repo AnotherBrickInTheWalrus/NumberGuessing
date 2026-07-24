@@ -11,20 +11,30 @@ public class GameControl : MonoBehaviour
     public int NumOfRules;
     public List <int> GuessedNumbers;
     public List <List<bool>> GuessResults;
+    public List <Func<int,bool>> UsedRules;
+    public List <Func<int,bool>> PossibleRules;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         GuessedNumbers = new List <int> {};
         GuessResults = new List<List<bool>> {};
-        Debug.Log(IsPalindrome(12321));
-        Debug.Log(IsPalindrome(12322));
+        UsedRules = new List <Func<int,bool>> {};
+        List<Func<int,bool>> SumRules = new List<Func<int,bool>> {SumInRange(0,10), SumInRange(0,20), SumIsPrime, SumIsSquare, SumIsTriangular, SumIsFactorOf100, SumIsLessThan10, SumIsRepeat};
+        List<Func<int,bool>> DivRules = new List<Func<int,bool>> {DivisibleBy(4), DivisibleBy(11)};
+        for (int i = 2; i < 9; i=i+2) DivRules.Add(DivisibleBy(i));
+        List<Func<int,bool>> ContRules = new List<Func<int,bool>> {};
+        for (int i=2;i<10;i++) ContRules.Add(Contains(i));
     }
 
     // Update is called once per frame
     void Update()
     {
         
+    }
+
+    public void GenerateRules(){
+
     }
 
     public void AddNumToGuesses(int num){
@@ -39,9 +49,14 @@ public class GameControl : MonoBehaviour
         return x%10+x/10%10+x/100%10+x/1000%10+x/10000%10+x/100000%10;
     }
 
-    public static Func<int,bool> DivisbleBy(int Divisor){
+    public static Func<int,bool> DivisibleBy(int Divisor){
         Func<int,bool> div;
         return div = x => x % Divisor == 0;
+    }
+
+    public static Func<int,bool> Contains(int checknum){
+        Func<int,bool> DoesContain;
+        return DoesContain = x => x.ToString().Contains(checknum.ToString());
     }
 
     public static Func<int,bool> SumInRange(int SumLow, int SumHigh){
