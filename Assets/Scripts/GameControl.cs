@@ -71,7 +71,7 @@ public class GameControl : MonoBehaviour
         return count >= 10;
     }
 
-    public List<Func<int,bool>> GenerateRuleSet(){
+    public List<Func<int,bool>> GenerateTempRuleSet(){
         List<List<Func<int,bool>>> UsedSets = new List<List<Func<int,bool>>> {};
         List<Func<int,bool>> TempRuleSet = new List<Func<int,bool>> {};
         System.Random rnd = new System.Random();
@@ -85,7 +85,11 @@ public class GameControl : MonoBehaviour
         }
         return TempRuleSet;
     }
+/*
+    public List<Func<int,bool>> GenerateRuleSet(){
 
+    }
+*/
     public static int SumOfDigits(int x){
         return x%10+x/10%10+x/100%10+x/1000%10+x/10000%10+x/100000%10;
     }
