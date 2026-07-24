@@ -37,7 +37,7 @@ public class GameControl : MonoBehaviour
             {"The number is divisible by 11", DivisibleBy(11)}};
         for (int i = 3; i < 9; i = i + 2) DivRules.Add($"The number is divisible by {i}",DivisibleBy(i));
         Dictionary<string, Func<int, bool>> ContRules = new Dictionary<string, Func<int, bool>> {};
-        for (int i = 2; i < 10; i++) ContRules.Add($"The number contains a {i}", Contains(i));
+        for (int i = 0; i < 10; i++) ContRules.Add($"The number contains a {i}", Contains(i));
         Dictionary<string, Func<int, bool>> MiscRules = new Dictionary<string, Func<int, bool>> {
             {"The number is a power of 2", IsPowerOf2},
             {"The number is a palindrome", IsPalindrome},
@@ -137,6 +137,11 @@ public class GameControl : MonoBehaviour
         }
     }
 
+    public List<bool> CheckNumber (int num){
+        List<bool> result = RuleSet.Select(kvp => kvp.Value(num)).ToList();
+        return result;
+    }
+
     public static int SumOfDigits(int x) {
         return x % 10 + x / 10 % 10 + x / 100 % 10 + x / 1000 % 10 + x / 10000 % 10 + x / 100000 % 10;
     }
@@ -146,9 +151,9 @@ public class GameControl : MonoBehaviour
         return div = x => x % Divisor == 0;
     }
 
-    public static Func<int, bool> Contains(int checknum) {
+    public Func<int, bool> Contains(int checknum) {
         Func<int, bool> DoesContain;
-        return DoesContain = x => x.ToString().Contains(checknum.ToString());
+        return DoesContain = x => (new string('0',NumOfDigits-x.ToString().Length)+x.ToString()).Contains(checknum.ToString());
     }
 
     public static Func<int, bool> SumInRange(int SumLow, int SumHigh) {
