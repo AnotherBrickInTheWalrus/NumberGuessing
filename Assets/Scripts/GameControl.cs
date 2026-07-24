@@ -8,6 +8,7 @@ using TMPro;
 public class GameControl : MonoBehaviour
 {
     public string CurrentGuess;
+    public int TotalGuesses;
     public int GuessesRemaining;
     public int NumOfDigits;
     public int NumOfRules;

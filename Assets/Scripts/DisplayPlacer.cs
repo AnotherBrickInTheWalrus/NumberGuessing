@@ -19,7 +19,7 @@ public class DisplayPlacer : MonoBehaviour
             newDigit.name = currentDigit.ToString();
             newBackground.transform.parent = GameObject.Find("Canvas").transform;
             newDigit.transform.parent = GameObject.Find("Canvas").transform;
-            float pos = MidPos[0] + (currentDigit - 1 - ((Control.NumOfDigits-1)/2f))*(50 + 30);
+            float pos = MidPos[0] + (currentDigit - 1 - ((Control.NumOfDigits-1)/2f))*(50 + 40);
             newDigit.transform.localPosition = new Vector2(pos, MidPos[1]);
             newBackground.transform.localPosition = new Vector2(pos, MidPos[1]+2);
         }
