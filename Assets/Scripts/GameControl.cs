@@ -29,6 +29,7 @@ public class GameControl : MonoBehaviour
         for (int i=2;i<10;i++) ContRules.Add(Contains(i));
         List<Func<int,bool>> MiscRules = new List<Func<int,bool>> {IsPowerOf2, IsPalindrome};
         AllRules = new List<List<Func<int,bool>>> {SumRules, DivRules, ContRules, MiscRules};
+        GenerateRules();
     }
 
     // Update is called once per frame
@@ -65,7 +66,12 @@ public class GameControl : MonoBehaviour
         if (NumOfRules == 2){
             int randIndex = rnd.Next(AllRules.Count);
             List<Func<int,bool>> ruleset = AllRules[randIndex];
+            UsedRules.Add(ruleset[rnd.Next(ruleset.Count)]);
+            ruleset = AllRules[rnd.Next(AllRules.Count)];
+            while (UsedSets.Contains(ruleset)){ruleset = AllRules[rnd.Next(AllRules.Count)];}
+            UsedRules.Add(ruleset[rnd.Next(ruleset.Count)]);
         }
+        Debug.Log(UsedRules.Count);
     }
 
     public static int SumOfDigits(int x){
