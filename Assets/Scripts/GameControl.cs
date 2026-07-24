@@ -11,27 +11,45 @@ public class GameControl : MonoBehaviour
     public int GuessesRemaining;
     public int NumOfDigits;
     public int NumOfRules;
+    public int NumOfGivenRules;
     public List<int> GuessedNumbers;
     public List<List<bool>> GuessResults;
-    public List<Func<int, bool>> UsedRules;
-    public List<Func<int, bool>> PossibleRules;
-    public List<List<Func<int, bool>>> AllRules;
+    public Dictionary<string, Func<int, bool>> UsedRules;
+    public Dictionary<string, Func<int, bool>> PossibleRules;
+    public List<Dictionary<string, Func<int, bool>>> AllRules;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         GuessedNumbers = new List<int> { };
         GuessResults = new List<List<bool>> { };
-        UsedRules = new List<Func<int, bool>> { };
-        List<Func<int, bool>> SumRules = new List<Func<int, bool>> { SumInRange(0, 10), SumInRange(0, 20), SumIsPrime, SumIsSquare, SumIsTriangular, SumIsFactorOf100, SumIsLessThan10, SumIsRepeat };
-        List<Func<int, bool>> DivRules = new List<Func<int, bool>> { DivisibleBy(4), DivisibleBy(11) };
-        for (int i = 2; i < 9; i = i + 2) DivRules.Add(DivisibleBy(i));
-        List<Func<int, bool>> ContRules = new List<Func<int, bool>> { };
-        for (int i = 2; i < 10; i++) ContRules.Add(Contains(i));
-        List<Func<int, bool>> MiscRules = new List<Func<int, bool>> { IsPowerOf2, IsPalindrome, AllDigitsEven, AllDigitsOdd, AllDigitsPrime, ProductIsSquare, IsPandigital };
-        AllRules = new List<List<Func<int, bool>>> { SumRules, DivRules, ContRules, MiscRules };
-        Func<int, bool> div = DivisibleBy(4);
-        Debug.Log(div == DivisibleBy(4));
+        UsedRules = new Dictionary<string, Func<int, bool>> { };
+        Dictionary<string, Func<int, bool>> SumRules = new Dictionary<string, Func<int, bool>> { 
+            {"Sum of the digits is less than 10", SumInRange(0, 9)},
+            {"Sum of the digits is in the range 10 <= Sum <= 19", SumInRange(10, 19)},
+            {"Sum of the digits is a prime number",SumIsPrime},
+            {"Sum of the digits is a square number", SumIsSquare},
+            {"Sum of the digits is a triangular number", SumIsTriangular},
+            {"Sum of the digits is a factor of 100", SumIsFactorOf100},
+            {"Sum of the digits has repeated digits", SumIsRepeat}};
+        Dictionary<string, Func<int, bool>> DivRules = new Dictionary<string, Func<int, bool>> {
+            {"The number is divisible by 4", DivisibleBy(4)},
+            {"The number is divisible by 11", DivisibleBy(11)}};
+        for (int i = 2; i < 9; i = i + 2) DivRules.Add($"The number is divisible by {i}",DivisibleBy(i));
+        Dictionary<string, Func<int, bool>> ContRules = new Dictionary<string, Func<int, bool>> {};
+        for (int i = 2; i < 10; i++) ContRules.Add($"The number contains a {i}", Contains(i));
+        Dictionary<string, Func<int, bool>> MiscRules = new Dictionary<string, Func<int, bool>> {
+            {"The number is a power of 2", IsPowerOf2},
+            {"The number is a palindrome", IsPalindrome},
+            {"All the digits are even", AllDigitsEven},
+            {"All the digits are odd", AllDigitsOdd},
+            {"All the digits are primes", AllDigitsPrime},
+            {"The product of the digits is a square number", ProductIsSquare},
+            {"All the digits are unique", IsPandigital},
+            {"None of the digits are unique", NonUnique},
+            {"Each digit is greater than the previous", Ascending},
+            {"Each digit is smaller than the previous", Descending}};
+        AllRules = new List<Dictionary<string, Func<int, bool>>> { SumRules, DivRules, ContRules, MiscRules };
     }
 
     void Update() { }
@@ -60,11 +78,11 @@ public class GameControl : MonoBehaviour
         GuessResults.Add(result);
     }
 
-    public bool CheckRuleValidity(List<Func<int, bool>> RuleSet) {
+    public bool CheckRuleValidity(Dictionary<string, Func<int, bool>> RuleSet) {
         int maxnum = Convert.ToInt32(new string('9', NumOfDigits));
         int count = 0;
         for (int i = 0; i < maxnum + 1; i++) {
-            List<bool> result = RuleSet.Select(x => x(i)).ToList();
+            List<bool> result = RuleSet.Select(kvp => kvp.Value(i)).ToList();
             if (!result.Contains(false)) {
                 count += 1;
             }
@@ -72,25 +90,45 @@ public class GameControl : MonoBehaviour
         return count >= 10;
     }
 
-    public List<Func<int, bool>> GenerateTempRuleSet() {
-        List<List<Func<int, bool>>> UsedSets = new List<List<Func<int, bool>>> { };
-        List<Func<int, bool>> TempRuleSet = new List<Func<int, bool>> { };
+    public Dictionary<string, Func<int, bool>> GenerateTempRuleSet() {
+        List<Dictionary<string, Func<int, bool>>> UsedSets = new List<Dictionary<string, Func<int, bool>>> { };
+        Dictionary<string, Func<int, bool>> TempRuleSet = new Dictionary<string, Func<int, bool>> { };
         System.Random rnd = new System.Random();
         if (NumOfRules == 2) {
             int randIndex = rnd.Next(AllRules.Count);
-            List<Func<int, bool>> ruleset = AllRules[randIndex];
-            TempRuleSet.Add(ruleset[rnd.Next(ruleset.Count)]);
+            Dictionary<string, Func<int, bool>> ruleset = AllRules[randIndex];
+            var randomElement = ruleset.ElementAt(rnd.Next(ruleset.Count));
+            TempRuleSet.Add(randomElement.Key, randomElement.Value);
             ruleset = AllRules[rnd.Next(AllRules.Count)];
-            while (UsedSets.Contains(ruleset)) { ruleset = AllRules[rnd.Next(AllRules.Count)]; }
-            TempRuleSet.Add(ruleset[rnd.Next(ruleset.Count)]);
+            while (UsedSets.Contains(ruleset)) {ruleset = AllRules[rnd.Next(AllRules.Count)]; }
+            randomElement = ruleset.ElementAt(rnd.Next(ruleset.Count));
+            TempRuleSet.Add(randomElement.Key, randomElement.Value);
         }
         return TempRuleSet;
     }
-    /*
-    public List<Func<int,bool>> GenerateRuleSet(){
 
+    public void GenerateRuleSet(){
+        UsedRules = new Dictionary<string, Func<int, bool>> { };
+        PossibleRules = new Dictionary<string, Func<int, bool>> { };
+        Dictionary<string, Func<int,bool>> TempRuleSet = GenerateTempRuleSet();
+        while (!CheckRuleValidity(TempRuleSet)){
+            TempRuleSet = GenerateTempRuleSet();
+        }
+        foreach (var kvp in TempRuleSet){
+            UsedRules[kvp.Key] = kvp.Value;
+            PossibleRules[kvp.Key] = kvp.Value;
+        }
+        System.Random rnd = new System.Random();
+        var randomElement = new KeyValuePair<string, Func<int,bool>>();
+        for (int i=0; i<NumOfGivenRules-NumOfRules; i++){
+            Dictionary<string, Func<int,bool>> ruleset = AllRules[rnd.Next(AllRules.Count)];
+            randomElement = ruleset.ElementAt(rnd.Next(ruleset.Count));
+            if (!PossibleRules.ContainsKey(randomElement.Key)){
+                PossibleRules.Add(randomElement.Key, randomElement.Value);
+            }
+        }
     }
-    */
+
     public static int SumOfDigits(int x) {
         return x % 10 + x / 10 % 10 + x / 100 % 10 + x / 1000 % 10 + x / 10000 % 10 + x / 100000 % 10;
     }
@@ -137,11 +175,6 @@ public class GameControl : MonoBehaviour
         int sum = SumOfDigits(num);
         List<int> factors = new List<int> { 1, 2, 4, 5, 10, 20, 25, 50 };
         return factors.Contains(sum);
-    }
-
-    public static bool SumIsLessThan10(int num) {
-        int sum = SumOfDigits(num);
-        return sum < 10;
     }
 
     public static bool IsPowerOf2(int num) {
@@ -217,7 +250,7 @@ public class GameControl : MonoBehaviour
         return true;
     }
 
-    public bool Nonunique(int x) {
+    public bool NonUnique(int x) {
         int[] DigitsOne = new int[7];
         int[] DigitsTwo = new int[7];
         for (int i = 0; i < NumOfDigits; i++) {
