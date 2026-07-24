@@ -87,9 +87,9 @@ public class GameControl : MonoBehaviour
         return TempRuleSet;
     }
     /*
-        public List<Func<int,bool>> GenerateRuleSet(){
+    public List<Func<int,bool>> GenerateRuleSet(){
 
-        }
+    }
     */
     public static int SumOfDigits(int x) {
         return x % 10 + x / 10 % 10 + x / 100 % 10 + x / 1000 % 10 + x / 10000 % 10 + x / 100000 % 10;
@@ -217,21 +217,6 @@ public class GameControl : MonoBehaviour
         return true;
     }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     public bool Nonunique(int x) {
         int[] DigitsOne = new int[7];
         int[] DigitsTwo = new int[7];
@@ -243,19 +228,14 @@ public class GameControl : MonoBehaviour
             else {
                 DigitsOne[i] = CurrentDigit;
             }
-            foreach (int d in DigitsOne) {
-                if (!Array.Exists(DigitsTwo, ele => ele == d)) {
-                    return false;
-                }
-
-
-            }
-            return true;
         }
+        foreach (int d in DigitsOne) {
+            if (!Array.Exists(DigitsTwo, ele => ele == d)) {
+                return false;
+            }
+        }
+        return true;
     }
-
-
-
 
     public bool Ascending(int x) {
         int PrevDigit = x / Convert.ToInt32(Math.Pow(10, 0)) % 10;
@@ -263,10 +243,10 @@ public class GameControl : MonoBehaviour
             int CurrentDigit = x / Convert.ToInt32(Math.Pow(10, i)) % 10;
             if (CurrentDigit < PrevDigit) {
                 return false;
-                PrevDigit = CurrentDigit;
-                return true;
             }
+            PrevDigit = CurrentDigit;
         }
+        return true;
     }
 
     public bool Descending(int x) {
@@ -280,7 +260,6 @@ public class GameControl : MonoBehaviour
         }
         return true;
     }
-
 
     public bool ContainsY(int x) {
         int[] OneAnd0 = { 0, 1 };
