@@ -37,7 +37,12 @@ public class GameControl : MonoBehaviour
     }
 
     public void GenerateRules(){
-
+        List<var> UsedSets = new List<var> {};
+        Random rnd = new Random();
+        if (NumOfRules == 2){
+            int randIndex = rnd.Next(AllRules.Count);
+            List<Func<int,bool>> ruleset = AllRules[randIndex];
+        }
     }
 
     public void AddNumToGuesses(int num){
