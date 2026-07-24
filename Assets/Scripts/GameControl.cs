@@ -153,4 +153,80 @@ public class GameControl : MonoBehaviour
         }
         return true;
     }
+
+
+
+
+
+    public static bool DigProdSquare(int x)
+    {
+        int Prod = 0;
+        if (x < 1000)
+        {
+            int Prod = (x % 10) * (x / 10 % 10) * (x / 100 % 10);
+        }
+        else if (x < 10000)
+        {
+            int Prod = (x % 10) * (x / 10 % 10) * (x / 100 % 10) * (x / 1000 % 10);
+        }
+        else if (x < 100000)
+        {
+            int Prod = (x % 10) * (x / 10 % 10) * (x / 100 % 10) * (x / 1000 % 10) * (x / 10000 % 10);
+        }
+        else
+        {
+            int Prod = (x % 10) * (x / 10 % 10) * (x / 100 % 10) * (x / 1000 % 10) * (x / 10000 % 10) * (x / 100000 % 10);
+        }
+        int Squiglette = (int)Math.Sqrt(Prod);
+        return Squiglette * Squiglette == Prod;
+    }
+
+    public static bool AllDigitsPrime(int x)
+    {
+        int[] Primes = { 2, 3, 5, 7 };
+        int AllPrimes = 1;
+        for (int i = 0; i < NumberOfDigits; i++)
+        {
+            AllPrimes = AllPrimes * Convert.ToInt32(Array.Exists(Primes, ele => ele == x / (Math.Pow(10, i)) % 10));
+        }
+        return AllPrimes == 1;
+    }
+
+    public static bool AllDigitsOdd(int x)
+    {
+        int[] Odds = { 1, 3, 5, 7, 9 };
+        int AllOdd = 1;
+        for (int i = 0; i < NumberOfDigits; i++)
+        {
+            AllOdd = AllOdd * Convert.ToInt32(Array.Exists(Odds, ele => ele == x / (Math.Pow(10, i)) % 10));
+        }
+        return AllOdd == 1;
+    }
+
+    public static bool AllDigitsEven(int x)
+    {
+        int[] Evens = { 2, 4, 6, 8, 0 };
+        int AllEven = 1;
+        for (int i = 0; i < NumberOfDigits; i++)
+        {
+            AllEven = AllEven * Convert.ToInt32(Array.Exists(Evens, ele => ele == x / (Math.Pow(10, i)) % 10));
+        }
+        return AllEven == 1;
+    }
+
+
+
+    public static bool Pandigital(int x)
+    {
+        int[] Digits = new int[6];
+        for (int i = 0; i < NumberOfDigits; i++)
+        {
+            int CurrentDigit = x / (Math.Pow(10, i)) % 10;
+            if Array.Exists(Digits, ele => ele == CurrentDigit){
+                return false;
+            }
+            Digits[i] = CurrentDigit;
+        }
+        return true;
+    }
 }
