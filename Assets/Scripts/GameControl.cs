@@ -86,8 +86,9 @@ public class GameControl : MonoBehaviour
     }
 
     public static bool IsPalindrome(int num){
+        string numstring;
         numstring = num.ToString();
-        len = numstring.Length;
+        int len = numstring.Length;
         len = len/2;
         for (int i=0; i<len; i++){
             if (numstring[i] != numstring[-i]){
