@@ -121,19 +121,27 @@ public class GameControl : MonoBehaviour
 
     public Dictionary<string, Func<int, bool>> GenerateTempRuleSet() {
         List<Dictionary<string, Func<int, bool>>> UsedSets = new List<Dictionary<string, Func<int, bool>>> { };
+        Dictionary<Dictionary<string, Func<int, bool>>, int> UsedNumber = new Dictionary<Dictionary<string, Func<int, bool>>, int> { };
         Dictionary<string, Func<int, bool>> TempRuleSet = new Dictionary<string, Func<int, bool>> { };
         System.Random rnd = new System.Random();
-        if (NumOfRules == 2) {
+        if (NumOfRules == 2 || NumOfRules == 3) {
             int randIndex = rnd.Next(AllRules.Count);
             Dictionary<string, Func<int, bool>> ruleset = AllRules[randIndex];
             UsedSets.Add(ruleset);
             var randomElement = ruleset.ElementAt(rnd.Next(ruleset.Count));
             TempRuleSet.Add(randomElement.Key, randomElement.Value);
-            ruleset = AllRules[rnd.Next(AllRules.Count)];
-            while (UsedSets.Contains(ruleset)) {ruleset = AllRules[rnd.Next(AllRules.Count)]; }
-            UsedSets.Add(ruleset);
-            randomElement = ruleset.ElementAt(rnd.Next(ruleset.Count));
-            TempRuleSet.Add(randomElement.Key, randomElement.Value);
+            for (int i = 1; i < NumOfRules; i++){
+                ruleset = AllRules[rnd.Next(AllRules.Count)];
+                while (UsedSets.Contains(ruleset)) {ruleset = AllRules[rnd.Next(AllRules.Count)]; }
+                UsedSets.Add(ruleset);
+                randomElement = ruleset.ElementAt(rnd.Next(ruleset.Count));
+                TempRuleSet.Add(randomElement.Key, randomElement.Value);
+            }
+        } else if (NumOfRules == 4 || NumOfRules == 5){
+            int randIndex = rnd.Next(AllRules.Count);
+            Dictionary<string, Func<int, bool>> ruleset = AllRules[randIndex];
+            UsedNumber.Add(ruleset, 1);
+            for (int i = 1; i < NumOfRules; i++){}
         }
         return TempRuleSet;
     }
