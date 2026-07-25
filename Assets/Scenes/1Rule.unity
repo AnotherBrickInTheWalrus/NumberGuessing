@@ -1796,8 +1796,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bddb324c6198694a9d111443feef175, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::DisplayPlacer
-  MidPosDigit: {x: 0, y: 240}
-  MidPosCheck: {x: 0, y: -360}
+  MidPosDigit: {x: 0, y: 360}
+  MidPosCheck: {x: 0, y: 240}
   Digit: {fileID: 3171469744215488254, guid: 6e6237726a0135843bd09630e5990ffb, type: 3}
   Background: {fileID: 1832603811920995648, guid: 79494991cbfd19a40b62015f8a117a98, type: 3}
   CheckBig: {fileID: 1832603811920995648, guid: 30dcbc7848ab16840af27e050995f69a, type: 3}
