@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: e8eba4cb381db3148af90579286ee7ba
+guid: bfdb125991127ec4a9a4bb11de0e96bd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 6945538624998438270
-    second: CheckBlankBig_0
+      213: -6768396970999950510
+    second: CheckBlankBig (1)_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CheckBlankBig_0
+      name: CheckBlankBig (1)_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: e7579c49492836060800000000000000
-      internalID: 6945538624998438270
+      spriteID: 253d7bcb0d2d112a0800000000000000
+      internalID: -6768396970999950510
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      CheckBlankBig_0: 6945538624998438270
+      CheckBlankBig (1)_0: -6768396970999950510
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

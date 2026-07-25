@@ -119,6 +119,7 @@ public class GameControl : MonoBehaviour
         if (NumOfRules == 2) {
             int randIndex = rnd.Next(AllRules.Count);
             Dictionary<string, Func<int, bool>> ruleset = AllRules[randIndex];
+            UsedSets.Add(ruleset);
             var randomElement = ruleset.ElementAt(rnd.Next(ruleset.Count));
             TempRuleSet.Add(randomElement.Key, randomElement.Value);
             ruleset = AllRules[rnd.Next(AllRules.Count)];
