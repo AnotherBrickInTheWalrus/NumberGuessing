@@ -104,7 +104,12 @@ public class GameControl : MonoBehaviour
                 count += 1;
             }
         }
-        return count >= 10;
+        
+        foreach (var kvp in RuleSet){
+            Debug.Log(kvp.Key);
+        }
+        Debug.Log(count);
+        return count >= 10 && count <= 100;
     }
 
     public Dictionary<string, Func<int, bool>> GenerateTempRuleSet() {
@@ -144,9 +149,6 @@ public class GameControl : MonoBehaviour
             if (!PossibleRules.ContainsKey(randomElement.Key)){
                 PossibleRules.Add(randomElement.Key, randomElement.Value);
             }
-        }
-        foreach (var kvp in UsedRules){
-            Debug.Log(kvp.Key);
         }
     }
 
