@@ -154,8 +154,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1660, y: -50}
-  m_SizeDelta: {x: 200, y: 980}
+  m_AnchoredPosition: {x: 1610, y: -50}
+  m_SizeDelta: {x: 250, y: 980}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &46370066
 MonoBehaviour:
@@ -257,7 +257,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 10, y: 10, z: 10, w: 10}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -569,8 +569,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1660, y: -50}
-  m_SizeDelta: {x: 200, y: 980}
+  m_AnchoredPosition: {x: 1610, y: -50}
+  m_SizeDelta: {x: 250, y: 980}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &355329903
 MonoBehaviour:
@@ -592,7 +592,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -8492155254230251239, guid: 1d8a0c9408e01a849854a21dbd1af5ec, type: 3}
+  m_Sprite: {fileID: 4791177924851455463, guid: 3868c259f5c07a74e9ae1e130d1a5e6b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -1085,8 +1085,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1410, y: -50}
-  m_SizeDelta: {x: 200, y: 980}
+  m_AnchoredPosition: {x: 1310, y: -50}
+  m_SizeDelta: {x: 250, y: 980}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1170778787
 MonoBehaviour:
@@ -1174,7 +1174,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_margin: {x: 10, y: 10, z: 10, w: 10}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
@@ -1711,8 +1711,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1410, y: -50}
-  m_SizeDelta: {x: 200, y: 980}
+  m_AnchoredPosition: {x: 1310, y: -50}
+  m_SizeDelta: {x: 250, y: 980}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1474735194
 MonoBehaviour:
@@ -1734,7 +1734,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: -8492155254230251239, guid: 1d8a0c9408e01a849854a21dbd1af5ec, type: 3}
+  m_Sprite: {fileID: 4791177924851455463, guid: 3868c259f5c07a74e9ae1e130d1a5e6b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2618,8 +2618,8 @@ MonoBehaviour:
   CurrentGuess: 
   TotalGuesses: 0
   GuessesRemaining: 0
-  NumOfDigits: 6
-  NumOfRules: 5
+  NumOfDigits: 4
+  NumOfRules: 2
   NumOfGivenRules: 10
   LenOfRules: 0
   GuessedNumbers: []
