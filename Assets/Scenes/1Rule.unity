@@ -130,7 +130,6 @@ GameObject:
   - component: {fileID: 46370065}
   - component: {fileID: 46370068}
   - component: {fileID: 46370067}
-  - component: {fileID: 46370066}
   m_Layer: 5
   m_Name: PastGuesses (1)
   m_TagString: Untagged
@@ -157,20 +156,6 @@ RectTransform:
   m_AnchoredPosition: {x: 1610, y: -50}
   m_SizeDelta: {x: 250, y: 980}
   m_Pivot: {x: 0, y: 1}
---- !u!114 &46370066
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 46370064}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b0ce4cb971fb7b46a3954595128e01a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::GuessesList
-  text: {fileID: 0}
-  numbers: {fileID: 0}
 --- !u!114 &46370067
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1201,7 +1186,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GuessesList
   text: {fileID: 0}
-  numbers: {fileID: 0}
+  Control: {fileID: 0}
+  LeftPosCheckSmall: {x: 1450, y: -60}
+  CheckSmallConstructor: {fileID: 1832603811920995648, guid: e449767579109af40bef2e46ab4872f2, type: 3}
 --- !u!1 &1353286397
 GameObject:
   m_ObjectHideFlags: 0
