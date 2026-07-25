@@ -111,29 +111,46 @@ public class GameControl : MonoBehaviour
                 count += 1;
             }
         }
-        
-        foreach (var kvp in RuleSet){
-            Debug.Log(kvp.Key);
+        if (count >= 10 && count <= 100){
+            Debug.Log(count);
         }
-        Debug.Log(count);
         return count >= 10 && count <= 100;
     }
 
     public Dictionary<string, Func<int, bool>> GenerateTempRuleSet() {
         List<Dictionary<string, Func<int, bool>>> UsedSets = new List<Dictionary<string, Func<int, bool>>> { };
+        Dictionary<Dictionary<string, Func<int, bool>>, int> UsedNumber = new Dictionary<Dictionary<string, Func<int, bool>>, int> { };
         Dictionary<string, Func<int, bool>> TempRuleSet = new Dictionary<string, Func<int, bool>> { };
         System.Random rnd = new System.Random();
-        if (NumOfRules == 2) {
+        if (NumOfRules == 2 || NumOfRules == 3) {
             int randIndex = rnd.Next(AllRules.Count);
             Dictionary<string, Func<int, bool>> ruleset = AllRules[randIndex];
             UsedSets.Add(ruleset);
             var randomElement = ruleset.ElementAt(rnd.Next(ruleset.Count));
             TempRuleSet.Add(randomElement.Key, randomElement.Value);
-            ruleset = AllRules[rnd.Next(AllRules.Count)];
-            while (UsedSets.Contains(ruleset)) {ruleset = AllRules[rnd.Next(AllRules.Count)]; }
-            UsedSets.Add(ruleset);
-            randomElement = ruleset.ElementAt(rnd.Next(ruleset.Count));
-            TempRuleSet.Add(randomElement.Key, randomElement.Value);
+            for (int i = 1; i <= NumOfRules; i++){
+                ruleset = AllRules[rnd.Next(AllRules.Count)];
+                while (UsedSets.Contains(ruleset)) {ruleset = AllRules[rnd.Next(AllRules.Count)]; }
+                UsedSets.Add(ruleset);
+                randomElement = ruleset.ElementAt(rnd.Next(ruleset.Count));
+                TempRuleSet.Add(randomElement.Key, randomElement.Value);
+            }
+        } else if (NumOfRules == 4 || NumOfRules == 5){
+            foreach (var item in AllRules){
+                UsedNumber.Add(item, 0);
+            }
+            var randomElement = new KeyValuePair<string, Func<int, bool>> {};
+            int randIndex = rnd.Next(AllRules.Count);
+            Dictionary<string, Func<int, bool>> ruleset = AllRules[randIndex];
+            UsedNumber[ruleset] = 1;
+            for (int i = 1; i <= NumOfRules; i++){
+                ruleset = AllRules[rnd.Next(AllRules.Count)];
+                while (UsedNumber[ruleset] > 1) {ruleset = AllRules[rnd.Next(AllRules.Count)];}
+                UsedNumber[ruleset] += 1;
+                randomElement = ruleset.ElementAt(rnd.Next(ruleset.Count));
+                while (TempRuleSet.Contains(randomElement)){randomElement = ruleset.ElementAt(rnd.Next(ruleset.Count));}
+                TempRuleSet.Add(randomElement.Key, randomElement.Value);
+            }
         }
         return TempRuleSet;
     }
@@ -158,6 +175,9 @@ public class GameControl : MonoBehaviour
                 PossibleRules.Add(randomElement.Key, randomElement.Value);
             }
         }
+        foreach (var kvp in PossibleRules){
+            Debug.Log(kvp.Key);
+        }
     }
 
     public void CheckNumber (){
@@ -166,11 +186,6 @@ public class GameControl : MonoBehaviour
             addNumToGuesses();
             AddResultToGuesses(result);
             UpdateResultDisplay(result);
-            string print = "";
-            foreach(bool item in result){
-                print += $"{item} ";
-            }
-            Debug.Log(print);
             digitDel();
         }
     }

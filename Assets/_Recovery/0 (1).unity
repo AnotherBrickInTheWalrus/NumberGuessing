@@ -2619,7 +2619,7 @@ MonoBehaviour:
   TotalGuesses: 0
   GuessesRemaining: 0
   NumOfDigits: 6
-  NumOfRules: 4
+  NumOfRules: 2
   NumOfGivenRules: 15
   LenOfRules: 0
   GuessedNumbers: []

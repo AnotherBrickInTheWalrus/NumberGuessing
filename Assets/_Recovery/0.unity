@@ -2618,9 +2618,9 @@ MonoBehaviour:
   CurrentGuess: 
   TotalGuesses: 0
   GuessesRemaining: 0
-  NumOfDigits: 6
+  NumOfDigits: 5
   NumOfRules: 4
-  NumOfGivenRules: 15
+  NumOfGivenRules: 10
   LenOfRules: 0
   GuessedNumbers: []
 --- !u!4 &2054924701
