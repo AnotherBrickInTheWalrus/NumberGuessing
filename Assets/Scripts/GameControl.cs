@@ -8,6 +8,7 @@ using TMPro;
 
 public class GameControl : MonoBehaviour
 {
+    private GuessesList Guesses;
     public string CurrentGuess;
     public int TotalGuesses;
     public int GuessesRemaining;
@@ -24,6 +25,7 @@ public class GameControl : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Guesses = GameObject.Find("PastGuesses").GetComponent<GuessesList>();
         GuessedNumbers = new List<string> { };
         GuessResults = new List<List<bool>> { };
         UsedRules = new Dictionary<string, Func<int, bool>> { };
@@ -186,6 +188,7 @@ public class GameControl : MonoBehaviour
             addNumToGuesses();
             AddResultToGuesses(result);
             UpdateResultDisplay(result);
+            Guesses.ListUpdate();
             digitDel();
         }
     }

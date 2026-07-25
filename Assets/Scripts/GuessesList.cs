@@ -15,11 +15,9 @@ public class GuessesList : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        text.text = "";
-        
-        foreach (var entry in numbers.GuessedNumbers)
-        {
-            text.text += $"{entry.ToString()}\n";
-        }
+    }
+
+    public void ListUpdate(){
+        text.text += $"{numbers.GuessedNumbers[numbers.GuessedNumbers.Count-1]}";
     }
 }
