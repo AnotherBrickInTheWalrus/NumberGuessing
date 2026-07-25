@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 1a32b1c7eba7552478027bdf3b201ce9
+guid: ea02c763b3d499543a6fe17d2ee0e1ce
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -8199569908424888554
-    second: CheckNo_0
+      213: 5356594226531832954
+    second: WRONG!!!!_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,24 +96,11 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CheckNo_0
+      name: WRONG!!!!_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 61f2a598c96453e80800000000000000
-      internalID: -8199569908424888554
+      spriteID: a74965e8112765a40800000000000000
+      internalID: 5356594226531832954
       vertices: []
       indices: 
       edges: []
@@ -148,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      CheckNo_0: -8199569908424888554
+      WRONG!!!!_0: 5356594226531832954
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: 429ab0b746b5a4e4984e28eb4ace9837
+guid: aeaab144d9f0b5044a7b1e30db3a8997
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 1907386832519550359
-    second: ButtonEnter_0
+      213: 1019511043358142819
+    second: Enter 1_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -96,24 +96,11 @@ TextureImporter:
     ignorePlatformSupport: 0
     androidETC2FallbackOverride: 0
     forceMaximumCompressionQuality_BC6H_BC7: 0
-  - serializedVersion: 4
-    buildTarget: WebGL
-    maxTextureSize: 2048
-    resizeAlgorithm: 0
-    textureFormat: -1
-    textureCompression: 1
-    compressionQuality: 50
-    crunchedCompression: 0
-    allowsAlphaSplitting: 0
-    overridden: 0
-    ignorePlatformSupport: 0
-    androidETC2FallbackOverride: 0
-    forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: ButtonEnter_0
+      name: Enter 1_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +115,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 795d599e736687a10800000000000000
-      internalID: 1907386832519550359
+      spriteID: 36133ff64e7062e00800000000000000
+      internalID: 1019511043358142819
       vertices: []
       indices: 
       edges: []
@@ -148,7 +135,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      ButtonEnter_0: 1907386832519550359
+      Enter 1_0: 1019511043358142819
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
