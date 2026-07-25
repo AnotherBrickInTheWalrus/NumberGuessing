@@ -249,7 +249,7 @@ public class GameControl : MonoBehaviour
         return Squiglette * Squiglette == Prod;
     }
 
-    public static bool AllDigitsPrime(int x)
+    public bool AllDigitsPrime(int x)
     {
         int[] Primes = { 2, 3, 5, 7 };
         int AllPrimes = 1;
@@ -260,7 +260,7 @@ public class GameControl : MonoBehaviour
         return AllPrimes == 1;
     }
 
-    public static bool AllDigitsOdd(int x)
+    public bool AllDigitsOdd(int x)
     {
         int[] Odds = { 1, 3, 5, 7, 9 };
         int AllOdd = 1;
@@ -271,7 +271,7 @@ public class GameControl : MonoBehaviour
         return AllOdd == 1;
     }
 
-    public static bool AllDigitsEven(int x)
+    public bool AllDigitsEven(int x)
     {
         int[] Evens = { 2, 4, 6, 8, 0 };
         int AllEven = 1;
@@ -314,7 +314,7 @@ public class GameControl : MonoBehaviour
         return true;
     }
 
-    public static bool Ascending(int x)
+    public bool Ascending(int x)
     {
         int PrevDigit = x / Convert.ToInt32(Math.Pow(10, 0)) % 10;
         for (int i = 1; i < NumOfDigits; i++)
@@ -329,7 +329,7 @@ public class GameControl : MonoBehaviour
         return true;
     }
 
-    public static bool Descending(int x)
+    public bool Descending(int x)
     {
         int PrevDigit = x / Convert.ToInt32(Math.Pow(10, 0)) % 10;
         for (int i = 1; i < NumOfDigits; i++)
@@ -344,7 +344,7 @@ public class GameControl : MonoBehaviour
         return true;
     }
 
-    public static bool ContainsY(int x)
+    public bool ContainsY(int x)
     {
         int[] OneAnd0 = { 0, 1 };
         if (Array.Exists(OneAnd0, ele => ele == (x / 10) % 10))
@@ -415,7 +415,7 @@ public class GameControl : MonoBehaviour
         return false;
     }
 
-    public static bool EveryOtherSame(int x)
+    public bool EveryOtherSame(int x)
     {
         if (NumOfDigits == 3)
         {
