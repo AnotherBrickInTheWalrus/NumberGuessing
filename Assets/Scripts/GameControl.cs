@@ -249,29 +249,35 @@ public class GameControl : MonoBehaviour
         return Squiglette * Squiglette == Prod;
     }
 
-    public bool AllDigitsPrime(int x) {
+    public static bool AllDigitsPrime(int x)
+    {
         int[] Primes = { 2, 3, 5, 7 };
         int AllPrimes = 1;
-        for (int i = 0; i < NumOfDigits; i++) {
-            AllPrimes = AllPrimes * Convert.ToInt32(Array.Exists(Primes, ele => ele == x / (Math.Pow(10, i)) % 10));
+        for (int i = 0; i < NumOfDigits; i++)
+        {
+            AllPrimes = AllPrimes * Convert.ToInt32(Array.Exists(Primes, ele => ele == x / Convert.ToInt32(Math.Pow(10, i)) % 10));
         }
         return AllPrimes == 1;
     }
 
-    public bool AllDigitsOdd(int x) {
+    public static bool AllDigitsOdd(int x)
+    {
         int[] Odds = { 1, 3, 5, 7, 9 };
         int AllOdd = 1;
-        for (int i = 0; i < NumOfDigits; i++) {
-            AllOdd = AllOdd * Convert.ToInt32(Array.Exists(Odds, ele => ele == x / (Math.Pow(10, i)) % 10));
+        for (int i = 0; i < NumOfDigits; i++)
+        {
+            AllOdd = AllOdd * Convert.ToInt32(Array.Exists(Odds, ele => ele == x / Convert.ToInt32(Math.Pow(10, i)) % 10));
         }
         return AllOdd == 1;
     }
 
-    public bool AllDigitsEven(int x) {
+    public static bool AllDigitsEven(int x)
+    {
         int[] Evens = { 2, 4, 6, 8, 0 };
         int AllEven = 1;
-        for (int i = 0; i < NumOfDigits; i++) {
-            AllEven = AllEven * Convert.ToInt32(Array.Exists(Evens, ele => ele == x / (Math.Pow(10, i)) % 10));
+        for (int i = 0; i < NumOfDigits; i++)
+        {
+            AllEven = AllEven * Convert.ToInt32(Array.Exists(Evens, ele => ele == x / Convert.ToInt32(Math.Pow(10, i)) % 10));
         }
         return AllEven == 1;
     }
@@ -308,11 +314,14 @@ public class GameControl : MonoBehaviour
         return true;
     }
 
-    public bool Ascending(int x) {
+    public static bool Ascending(int x)
+    {
         int PrevDigit = x / Convert.ToInt32(Math.Pow(10, 0)) % 10;
-        for (int i = 1; i < NumOfDigits; i++) {
+        for (int i = 1; i < NumOfDigits; i++)
+        {
             int CurrentDigit = x / Convert.ToInt32(Math.Pow(10, i)) % 10;
-            if (CurrentDigit < PrevDigit) {
+            if (!(CurrentDigit < PrevDigit))
+            {
                 return false;
             }
             PrevDigit = CurrentDigit;
@@ -320,11 +329,14 @@ public class GameControl : MonoBehaviour
         return true;
     }
 
-    public bool Descending(int x) {
+    public static bool Descending(int x)
+    {
         int PrevDigit = x / Convert.ToInt32(Math.Pow(10, 0)) % 10;
-        for (int i = 1; i < NumOfDigits; i++) {
+        for (int i = 1; i < NumOfDigits; i++)
+        {
             int CurrentDigit = x / Convert.ToInt32(Math.Pow(10, i)) % 10;
-            if (CurrentDigit > PrevDigit) {
+            if (!(CurrentDigit > PrevDigit))
+            {
                 return false;
             }
             PrevDigit = CurrentDigit;
@@ -332,15 +344,20 @@ public class GameControl : MonoBehaviour
         return true;
     }
 
-    public bool ContainsY(int x) {
+    public static bool ContainsY(int x)
+    {
         int[] OneAnd0 = { 0, 1 };
-        if (Array.Exists(OneAnd0, ele => ele == x / (Convert.ToInt32(Math.Pow(10, NumOfDigits - 2))) % 10)) {
-            if (NumOfDigits > 4) {
-                if (Array.Exists(OneAnd0, ele => ele == x / (Convert.ToInt32(Math.Pow(10, NumOfDigits - 5))) % 10)) {
+        if (Array.Exists(OneAnd0, ele => ele == (x / 10) % 10))
+        {
+            if (NumOfDigits > 4)
+            {
+                if (Array.Exists(OneAnd0, ele => ele == (x / 10000) % 10))
+                {
                     return false;
                 }
             }
-            else {
+            else
+            {
                 return false;
             }
         }
@@ -377,12 +394,19 @@ public class GameControl : MonoBehaviour
         return x % 10 == (x / 10) % 10;
     }
 
-    public bool ThreeConsecutiveSame(int x) {
+    public bool ThreeConsecutiveSame(int x)
+    {
+        if (NumOfDigits == 3)
+        {
+            return false;
+        }
         int PrevPrevDigit = x % 10;
         int PrevDigit = (x / 10) % 10;
-        for (int i = 2; i < NumOfDigits; i++) {
+        for (int i = 2; i < NumOfDigits; i++)
+        {
             int CurrentDigit = x / Convert.ToInt32(Math.Pow(10, i)) % 10;
-            if (CurrentDigit == PrevDigit && CurrentDigit == PrevPrevDigit) {
+            if (CurrentDigit == PrevDigit && CurrentDigit == PrevPrevDigit)
+            {
                 return true;
             }
             PrevPrevDigit = PrevDigit;
@@ -391,21 +415,30 @@ public class GameControl : MonoBehaviour
         return false;
     }
 
-    public bool EveryOtherSame(int x) {
+    public static bool EveryOtherSame(int x)
+    {
+        if (NumOfDigits == 3)
+        {
+            return false;
+        }
         int PrevDigit = x % 10;
         bool WorkiesOne = true;
         bool WorkiesTwo = true;
-        for (int i = 2; i < NumOfDigits; i = i + 2) {
+        for (int i = 2; i < NumOfDigits; i = i + 2)
+        {
             int CurrentDigit = x / Convert.ToInt32(Math.Pow(10, i)) % 10;
-            if (CurrentDigit != PrevDigit) {
+            if (CurrentDigit != PrevDigit)
+            {
                 WorkiesOne = false;
             }
             PrevDigit = CurrentDigit;
         }
         PrevDigit = (x / 10) % 10;
-        for (int i = 3; i < NumOfDigits; i = i + 2) {
+        for (int i = 3; i < NumOfDigits; i = i + 2)
+        {
             int CurrentDigit = x / Convert.ToInt32(Math.Pow(10, i)) % 10;
-            if (CurrentDigit != PrevDigit) {
+            if (CurrentDigit != PrevDigit)
+            {
                 WorkiesTwo = false;
             }
             PrevDigit = CurrentDigit;
