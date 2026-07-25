@@ -3,8 +3,8 @@ guid: bfdb125991127ec4a9a4bb11de0e96bd
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -6768396970999950510
-    second: CheckBlankBig (1)_0
+      213: -8790945139927127406
+    second: CheckBlank_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -113,7 +113,7 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: CheckBlankBig (1)_0
+      name: CheckBlank_0
       rect:
         serializedVersion: 2
         x: 0
@@ -128,8 +128,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 253d7bcb0d2d112a0800000000000000
-      internalID: -6768396970999950510
+      spriteID: 29a62beb8f9400680800000000000000
+      internalID: -8790945139927127406
       vertices: []
       indices: 
       edges: []
@@ -148,7 +148,7 @@ TextureImporter:
     spriteCustomMetadata:
       entries: []
     nameFileIdTable:
-      CheckBlankBig (1)_0: -6768396970999950510
+      CheckBlank_0: -8790945139927127406
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

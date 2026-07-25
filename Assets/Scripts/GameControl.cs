@@ -1,5 +1,6 @@
 
 using UnityEngine;
+using UnityEngine.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -95,6 +96,12 @@ public class GameControl : MonoBehaviour
         GuessResults.Add(result);
     }
 
+    public void UpdateResultDisplay(List<bool> result){
+        for(int i=0; i< NumOfRules; i++){
+            GameObject.Find($"Check{i}").GetComponent<Image>().sprite = Resources.Load<Sprite>($"Check{result[i]}");
+        }
+    }
+
     public bool CheckRuleValidity(Dictionary<string, Func<int, bool>> RuleSet) {
         int maxnum = Convert.ToInt32(new string('9', NumOfDigits));
         int count = 0;
@@ -158,6 +165,7 @@ public class GameControl : MonoBehaviour
             List<bool> result = UsedRules.Select(kvp => kvp.Value(Convert.ToInt32(CurrentGuess))).ToList();
             addNumToGuesses();
             AddResultToGuesses(result);
+            UpdateResultDisplay(result);
             string print = "";
             foreach(bool item in result){
                 print += $"{item} ";
@@ -231,22 +239,13 @@ public class GameControl : MonoBehaviour
         return true;
     }
 
-    public static bool ProductIsSquare(int x) {
-        int Prod;
-        if (x < 1000) {
-            Prod = (x % 10) * (x / 10 % 10) * (x / 100 % 10);
+    public bool ProductIsSquare(int x) {
+        int Prod = 1;
+        for (int i = 0; i < NumOfDigits; i++){
+            Prod = Prod * (x / Convert.ToInt32(Math.Pow(10, i)) % 10);
         }
-        else if (x < 10000) {
-            Prod = (x % 10) * (x / 10 % 10) * (x / 100 % 10) * (x / 1000 % 10);
-        }
-        else if (x < 100000) {
-            Prod = (x % 10) * (x / 10 % 10) * (x / 100 % 10) * (x / 1000 % 10) * (x / 10000 % 10);
-        }
-        else {
-            Prod = (x % 10) * (x / 10 % 10) * (x / 100 % 10) * (x / 1000 % 10) * (x / 10000 % 10) * (x / 100000 % 10);
-        }
-        int Squiglette = (int)Math.Sqrt(Prod);
-        return Squiglette * Squiglette == Prod;
+        int Squiglette = Convert.ToInt32(Math.Sqrt(Prod));
+        return Squiglette*Squiglette == Prod;
     }
 
     public bool AllDigitsPrime(int x)
@@ -364,8 +363,6 @@ public class GameControl : MonoBehaviour
         return true;
     }
 
-
-
     public bool NoAdjacentEqual(int x)
     {
         int PrevDigit = x % 10;
@@ -378,7 +375,6 @@ public class GameControl : MonoBehaviour
         }
         return true;
     }
-
 
     public bool LastTwoDivisible3(int x) {
         int Last2 = x % 10 + ((x / 10) % 10) * 10;
