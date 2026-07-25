@@ -24,9 +24,9 @@ public class GuessesList : MonoBehaviour
     public void ListUpdate(){
         text.text += $"{Control.GuessedNumbers[Control.GuessedNumbers.Count-1]}\n";
         Control = GameObject.Find("GameController").GetComponent<GameControl>();
-        NewCheckSmallConstructor = Instantiate(CheckSmallConstructor, LeftPosCheckSmall, Quaternion.identity);
+        NewCheckSmallConstructor = Instantiate(CheckSmallConstructor, new Vector2(0,0), Quaternion.identity);
         NewCheckSmallConstructor.name = $"CheckSmallBox_{Control.GuessResults.Count}";
-        Vector2 pos = new Vector2(LeftPosCheckSmall[0] + (Control.GuessResults.Count > 25 ? 300 : 0), LeftPosCheckSmall[1]+38*(Control.GuessResults.Count-1));
+        Vector2 pos = new Vector2(LeftPosCheckSmall[0] + (Control.GuessResults.Count > 25 ? 300 : 0), LeftPosCheckSmall[1]-38*(Control.GuessResults.Count-1 - (Control.GuessResults.Count > 25 ? 25 : 0)));
         NewCheckSmallConstructor.transform.parent = GameObject.Find("Canvas").transform;
         NewCheckSmallConstructor.transform.localPosition = pos;
     }
