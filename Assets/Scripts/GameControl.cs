@@ -182,6 +182,7 @@ public class GameControl : MonoBehaviour
             }
             PossibleRules.Add(randomElement.Key, randomElement.Value);
         }
+        PossibleRules = PossibleRules.OrderBy(x => Guid.NewGuid()).ToDictionary(item => item.Key, item => item.Value);
         foreach (var pair in UsedRules){
             Debug.Log(pair.Key);
         }
