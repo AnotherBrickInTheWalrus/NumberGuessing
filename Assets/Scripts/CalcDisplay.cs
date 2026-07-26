@@ -105,10 +105,14 @@ public class CalcDisplay : MonoBehaviour
 
     public void remDigit()
     {
-
-        if (box.text != "")
+        
+        if (box.text != "" && box.text != "ERROR")
         {
             box.text = box.text.Substring(0, box.text.Length - 1);
+        }
+        else if (box.text == "ERROR")
+        {
+            box.text = "";
         }
     }
 }
