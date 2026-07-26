@@ -104,19 +104,16 @@ public class GameControl : MonoBehaviour
         }
     }
 
-    public bool CheckRuleValidity(Dictionary<string, Func<int, bool>> RuleSet) {
+    public void CheckRuleValidity(in Dictionary<string, Func<int, bool>> RuleSet, out bool Vailidity, out int count) {
         int maxnum = Convert.ToInt32(new string('9', NumOfDigits));
-        int count = 0;
+        count = 0;
         for (int i = 0; i < maxnum + 1; i++) {
             List<bool> result = RuleSet.Select(kvp => kvp.Value(i)).ToList();
             if (!result.Contains(false)) {
                 count += 1;
             }
         }
-        if (count >= 10 && count <= 100){
-            Debug.Log(count);
-        }
-        return count >= 10 && count <= 100;
+        Vailidity = 10 <= count && count <= 100;
     }
 
     public Dictionary<string, Func<int, bool>> GenerateTempRuleSet() {
@@ -158,11 +155,15 @@ public class GameControl : MonoBehaviour
     }
 
     public void GenerateRuleSet(){
+        int count = 0;
+        bool Validity = false;
         UsedRules = new Dictionary<string, Func<int, bool>> { };
         PossibleRules = new Dictionary<string, Func<int, bool>> { };
         Dictionary<string, Func<int,bool>> TempRuleSet = GenerateTempRuleSet();
-        while (!CheckRuleValidity(TempRuleSet)){
+        CheckRuleValidity(in TempRuleSet, out Validity, out count);
+        while (!Validity){
             TempRuleSet = GenerateTempRuleSet();
+            CheckRuleValidity(in TempRuleSet, out Validity, out count);
         }
         foreach (var kvp in TempRuleSet){
             UsedRules[kvp.Key] = kvp.Value;
@@ -177,9 +178,14 @@ public class GameControl : MonoBehaviour
                 PossibleRules.Add(randomElement.Key, randomElement.Value);
             }
         }
+        foreach (var kvp in UsedRules){
+            Debug.Log(kvp.Key);
+        }
+        for (int i=0; i<20; i++){Debug.Log("\n");}
         foreach (var kvp in PossibleRules){
             Debug.Log(kvp.Key);
         }
+        Debug.Log(count);
     }
 
     public void CheckNumber (){

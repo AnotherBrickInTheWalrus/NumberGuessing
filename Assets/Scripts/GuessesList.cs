@@ -27,7 +27,7 @@ public class GuessesList : MonoBehaviour
         NewCheckSmallConstructor = Instantiate(CheckSmallConstructor, new Vector2(0,0), Quaternion.identity);
         NewCheckSmallConstructor.name = $"CheckSmallBox_{Control.GuessResults.Count}";
         Vector2 pos = new Vector2(LeftPosCheckSmall[0] + (Control.GuessResults.Count > 25 ? 300 : 0), LeftPosCheckSmall[1]-38*(Control.GuessResults.Count-1 - (Control.GuessResults.Count > 25 ? 25 : 0)));
-        NewCheckSmallConstructor.transform.parent = GameObject.Find("Canvas").transform;
+        NewCheckSmallConstructor.transform.SetParent(GameObject.Find("Canvas").transform, false);
         NewCheckSmallConstructor.transform.localPosition = pos;
     }
 }
