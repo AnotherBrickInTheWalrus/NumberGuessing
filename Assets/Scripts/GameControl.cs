@@ -40,7 +40,7 @@ public class GameControl : MonoBehaviour
             {"Sum of the digits is a factor of 100", SumIsFactorOf100},
             {"Sum of the digits has repeated digits", SumIsRepeat}};
         Dictionary<string, Func<int, bool>> DivRules = new Dictionary<string, Func<int, bool>> {
-            {"The number is divisible by 4", DivisibleBy(2)},
+            {"The number is divisible by 4", DivisibleBy(4)},
             {"The number is divisible by 11", DivisibleBy(11)}};
         for (int i = 3; i < 9; i = i + 2) DivRules.Add($"The number is divisible by {i}",DivisibleBy(i));
         Dictionary<string, Func<int, bool>> ContRules = new Dictionary<string, Func<int, bool>> {};
