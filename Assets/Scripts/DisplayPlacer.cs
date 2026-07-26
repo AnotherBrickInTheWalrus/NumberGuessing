@@ -20,8 +20,8 @@ public class DisplayPlacer : MonoBehaviour
             newDigit = Instantiate(Digit, MidPosDigit, Quaternion.identity);
             newBackground = Instantiate(Background, MidPosDigit, Quaternion.identity);
             newDigit.name = currentDigit.ToString();
-            newBackground.transform.parent = GameObject.Find("Canvas").transform;
-            newDigit.transform.parent = GameObject.Find("Canvas").transform;
+            newBackground.transform.parent = GameObject.Find("John").transform;
+            newDigit.transform.parent = GameObject.Find("John").transform;
             float pos = MidPosDigit[0] + (currentDigit - 1 - ((Control.NumOfDigits-1)/2f))*(50 + 40);
             newDigit.transform.localPosition = new Vector2(pos, MidPosDigit[1]);
             newBackground.transform.localPosition = new Vector2(pos, MidPosDigit[1]+2);
@@ -31,7 +31,7 @@ public class DisplayPlacer : MonoBehaviour
             NewCheckBig = Instantiate(CheckBig, MidPosCheck, Quaternion.identity);
             NewCheckBig.name = $"Check{CurrentRule.ToString()}";
             float pos = MidPosCheck[0] + (CurrentRule - (Control.NumOfRules-1)/2f)*(50+50);
-            NewCheckBig.transform.parent = GameObject.Find("Canvas").transform;
+            NewCheckBig.transform.parent = GameObject.Find("John").transform;
             NewCheckBig.transform.localPosition = new Vector2(pos, MidPosCheck[1]);
         }
     }

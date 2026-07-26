@@ -35,8 +35,8 @@ public class GameControl : MonoBehaviour
             {"Sum of the digits is less than 10", SumInRange(0, 9)},
             {"Sum of the digits is in the range 10 <= Sum <= 19", SumInRange(10, 19)},
             {"Sum of the digits is a prime number",SumIsPrime},
-            {"Sum of the digits is a square number", SumIsSquare},
-            {"Sum of the digits is a triangular number", SumIsTriangular},
+            {"Sum of the digits is a square number (0 is square)", SumIsSquare},
+            {"Sum of the digits is a triangular number (0 is triangular)", SumIsTriangular},
             {"Sum of the digits is a factor of 100", SumIsFactorOf100},
             {"Sum of the digits has repeated digits", SumIsRepeat}};
         Dictionary<string, Func<int, bool>> DivRules = new Dictionary<string, Func<int, bool>> {
@@ -51,7 +51,7 @@ public class GameControl : MonoBehaviour
             {"All the digits are even", AllDigitsEven},
             {"All the digits are odd", AllDigitsOdd},
             {"All the digits are primes", AllDigitsPrime},
-            {"The product of the digits is a square number", ProductIsSquare},
+            {"The product of the digits is a square number (0 is square)", ProductIsSquare},
             {"All the digits are unique", IsPandigital},
             {"None of the digits are unique", NonUnique},
             {"Each digit is greater than the previous", Ascending},
@@ -255,6 +255,10 @@ public class GameControl : MonoBehaviour
 
     public static bool SumIsRepeat(int num) {
         int sum = SumOfDigits(num);
+        if (sum == 0)
+        {
+            return false;
+        }
         return sum % 11 == 0;
     }
 
@@ -268,9 +272,10 @@ public class GameControl : MonoBehaviour
         return Math.Log(num, 2) % 1 == 0;
     }
 
-    public static bool IsPalindrome(int num) {
+    public bool IsPalindrome(int num) {
         string numstring = num.ToString();
         int len = numstring.Length;
+        numstring = (NumOfDigits - len) * '0' + numstring;
         int halflen = len / 2;
         for (int i = 0; i < halflen; i++) {
             if (numstring[i] != numstring[len - i - 1]) {
