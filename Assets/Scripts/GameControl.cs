@@ -25,6 +25,8 @@ public class GameControl : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        GuessesRemaining = TotalGuesses;
+        UpdateGuessesRemaining(0);
         Guesses = GameObject.Find("PastGuesses").GetComponent<GuessesList>();
         GuessedNumbers = new List<string> { };
         GuessResults = new List<List<bool>> { };
@@ -102,6 +104,15 @@ public class GameControl : MonoBehaviour
         for(int i=0; i< NumOfRules; i++){
             GameObject.Find($"Check{i}").GetComponent<Image>().sprite = Resources.Load<Sprite>($"Check{result[i]}");
         }
+    }
+
+    public void UpdateGuessesRemaining(int guesses){
+        GuessesRemaining -= guesses;
+        GameObject.Find("GuessesRemaining").GetComponent<TextMeshProUGUI>().text = GuessesRemaining.ToString();
+        GameObject top = GameObject.Find("CountColumnTop");
+        top.transform.localPosition -= new Vector3(0, 640f/(TotalGuesses-1)*guesses, 0);
+        GameObject middle = GameObject.Find("CountColumnMiddle");
+        middle.GetComponent<RectTransform>().SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, 640f/(TotalGuesses-1)*(GuessesRemaining-1));
     }
 
     public void CheckRuleValidity(in Dictionary<string, Func<int, bool>> RuleSet, out bool Vailidity, out int count) {
@@ -199,6 +210,7 @@ public class GameControl : MonoBehaviour
             addNumToGuesses();
             AddResultToGuesses(result);
             UpdateResultDisplay(result);
+            UpdateGuessesRemaining(1);
             Guesses.ListUpdate();
             digitDel();
         }
