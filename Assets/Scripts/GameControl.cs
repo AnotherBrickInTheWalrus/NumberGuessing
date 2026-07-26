@@ -21,9 +21,8 @@ public class GameControl : MonoBehaviour
     public Dictionary<string, Func<int, bool>> UsedRules;
     public Dictionary<string, Func<int, bool>> PossibleRules;
     public List<Dictionary<string, Func<int, bool>>> AllRules;
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    
+    void Awake()
     {
         GuessesRemaining = TotalGuesses;
         UpdateGuessesRemaining(0);
@@ -65,6 +64,11 @@ public class GameControl : MonoBehaviour
             {"Every other digit is the same", EveryOtherSame} };
         AllRules = new List<Dictionary<string, Func<int, bool>>> { SumRules, DivRules, ContRules, MiscRules };
         GenerateRuleSet();
+    }
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        
     }
 
     void Update() { }
