@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 public class GameControl : MonoBehaviour
 {
@@ -21,7 +22,9 @@ public class GameControl : MonoBehaviour
     public Dictionary<string, Func<int, bool>> UsedRules;
     public Dictionary<string, Func<int, bool>> PossibleRules;
     public List<Dictionary<string, Func<int, bool>>> AllRules;
-    
+
+    public int correctRules = 0;
+
     void Awake()
     {
         GameInfo Gameinfo = GameObject.Find("GameInfoTracker").GetComponent<GameInfo>();
@@ -213,6 +216,8 @@ public class GameControl : MonoBehaviour
         Debug.Log(count);
     }
 
+    
+
     public void CheckNumber (){
         if (CurrentGuess.Length == NumOfDigits){
             List<bool> result = UsedRules.Select(kvp => kvp.Value(Convert.ToInt32(CurrentGuess))).ToList();
@@ -222,6 +227,13 @@ public class GameControl : MonoBehaviour
             UpdateGuessesRemaining(1);
             Guesses.ListUpdate();
             digitDel();
+            if (!result.Contains(false) && correctRules == NumOfRules)
+            {
+                SceneManager.LoadScene("Win");
+            } else if (GuessesRemaining == 0)
+            {
+                SceneManager.LoadScene("Lose");
+            }
         }
     }
 
