@@ -2605,8 +2605,8 @@ MonoBehaviour:
   CurrentGuess: 
   TotalGuesses: 0
   GuessesRemaining: 0
-  NumOfDigits: 6
-  NumOfRules: 5
+  NumOfDigits: 4
+  NumOfRules: 2
   NumOfGivenRules: 10
   LenOfRules: 0
   GuessedNumbers: []

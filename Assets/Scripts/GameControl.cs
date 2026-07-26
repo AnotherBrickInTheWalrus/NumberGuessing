@@ -127,7 +127,7 @@ public class GameControl : MonoBehaviour
             UsedSets.Add(ruleset);
             var randomElement = ruleset.ElementAt(rnd.Next(ruleset.Count));
             TempRuleSet.Add(randomElement.Key, randomElement.Value);
-            for (int i = 1; i <= NumOfRules; i++){
+            for (int i = 1; i < NumOfRules; i++){
                 ruleset = AllRules[rnd.Next(AllRules.Count)];
                 while (UsedSets.Contains(ruleset)) {ruleset = AllRules[rnd.Next(AllRules.Count)]; }
                 UsedSets.Add(ruleset);
@@ -142,7 +142,9 @@ public class GameControl : MonoBehaviour
             int randIndex = rnd.Next(AllRules.Count);
             Dictionary<string, Func<int, bool>> ruleset = AllRules[randIndex];
             UsedNumber[ruleset] = 1;
-            for (int i = 1; i <= NumOfRules; i++){
+            randomElement = ruleset.ElementAt(rnd.Next(ruleset.Count));
+            TempRuleSet.Add(randomElement.Key, randomElement.Value);
+            for (int i = 1; i < NumOfRules; i++){
                 ruleset = AllRules[rnd.Next(AllRules.Count)];
                 while (UsedNumber[ruleset] > 1) {ruleset = AllRules[rnd.Next(AllRules.Count)];}
                 UsedNumber[ruleset] += 1;
@@ -180,12 +182,12 @@ public class GameControl : MonoBehaviour
             }
             PossibleRules.Add(randomElement.Key, randomElement.Value);
         }
-        foreach (var kvp in UsedRules){
-            Debug.Log(kvp.Key);
+        foreach (var pair in UsedRules){
+            Debug.Log(pair.Key);
         }
         for (int i=0; i<20; i++){Debug.Log("\n");}
-        foreach (var kvp in PossibleRules){
-            Debug.Log(kvp.Key);
+        foreach (var pair in PossibleRules){
+            Debug.Log(pair.Key);
         }
         Debug.Log(count);
     }
