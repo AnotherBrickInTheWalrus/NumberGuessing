@@ -162,6 +162,7 @@ public class GameControl : MonoBehaviour
         Dictionary<string, Func<int,bool>> TempRuleSet = GenerateTempRuleSet();
         CheckRuleValidity(in TempRuleSet, out Validity, out count);
         while (!Validity){
+            TempRuleSet = new Dictionary<string, Func<int,bool>> {};
             TempRuleSet = GenerateTempRuleSet();
             CheckRuleValidity(in TempRuleSet, out Validity, out count);
         }
@@ -227,13 +228,13 @@ public class GameControl : MonoBehaviour
 
     public static bool SumIsSquare(int num) {
         int sum = SumOfDigits(num);
-        List<int> squares = new List<int> { 1, 4, 9, 16, 25, 36, 49 };
+        List<int> squares = new List<int> {0, 1, 4, 9, 16, 25, 36, 49 };
         return squares.Contains(sum);
     }
 
     public static bool SumIsTriangular(int num) {
         int sum = SumOfDigits(num);
-        List<int> triangles = new List<int> { 1, 3, 6, 10, 15, 21, 28, 36, 45 };
+        List<int> triangles = new List<int> {0, 1, 3, 6, 10, 15, 21, 28, 36, 45 };
         return triangles.Contains(sum);
     }
 
