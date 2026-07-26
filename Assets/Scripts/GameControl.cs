@@ -174,9 +174,10 @@ public class GameControl : MonoBehaviour
         for (int i=0; i<NumOfGivenRules-NumOfRules; i++){
             Dictionary<string, Func<int,bool>> ruleset = AllRules[rnd.Next(AllRules.Count)];
             randomElement = ruleset.ElementAt(rnd.Next(ruleset.Count));
-            if (!PossibleRules.ContainsKey(randomElement.Key)){
-                PossibleRules.Add(randomElement.Key, randomElement.Value);
+            while (PossibleRules.ContainsKey(randomElement.Key)){
+                randomElement = ruleset.ElementAt(rnd.Next(ruleset.Count));
             }
+            PossibleRules.Add(randomElement.Key, randomElement.Value);
         }
         foreach (var kvp in UsedRules){
             Debug.Log(kvp.Key);
