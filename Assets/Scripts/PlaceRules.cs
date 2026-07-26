@@ -13,13 +13,6 @@ public class PlaceRules : MonoBehaviour
     {
         rules = GameObject.Find("GameController").GetComponent<GameControl>().PossibleRules;
         usedRules = GameObject.Find("GameController").GetComponent<GameControl>().UsedRules;
-
-        int i = 1;
-        foreach (var kvp in rules)
-        {
-            GameObject.Find($"r{i}").GetComponent<TextMeshProUGUI>().text = kvp.Key;
-            i++;
-        }
     }
 
     public void GuessRule(int rule)

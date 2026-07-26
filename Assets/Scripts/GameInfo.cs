@@ -53,7 +53,7 @@ public class GameInfo : MonoBehaviour
     public void loadNext()
     {
         Difficulty = DifficultyField.text;
-        NumGuesses = 50;
+        NumGuesses = 10;
         if (Difficulty == "Easy")
         {
             NumDigits = 4;
