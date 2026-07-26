@@ -17,7 +17,7 @@ public class CheckSmallConstructorScript : MonoBehaviour
             NewCheckSmall = Instantiate(CheckSmall, LeftPosCheckSmall, Quaternion.identity);
             NewCheckSmall.name = $"CheckSmall_{Control.GuessResults.Count}_{CurrentRule.ToString()}";
             float pos = LeftPosCheckSmall[0] + (CurrentRule)*(20+2);
-            NewCheckSmall.transform.parent = GameObject.Find("Canvas").transform;
+            NewCheckSmall.transform.SetParent(GameObject.Find("Canvas").transform, false);
             NewCheckSmall.transform.localPosition = new Vector2(pos, LeftPosCheckSmall[1]);
         }
     }

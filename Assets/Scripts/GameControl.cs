@@ -104,19 +104,16 @@ public class GameControl : MonoBehaviour
         }
     }
 
-    public bool CheckRuleValidity(Dictionary<string, Func<int, bool>> RuleSet) {
+    public void CheckRuleValidity(in Dictionary<string, Func<int, bool>> RuleSet, out bool Vailidity, out int count) {
         int maxnum = Convert.ToInt32(new string('9', NumOfDigits));
-        int count = 0;
+        count = 0;
         for (int i = 0; i < maxnum + 1; i++) {
             List<bool> result = RuleSet.Select(kvp => kvp.Value(i)).ToList();
             if (!result.Contains(false)) {
                 count += 1;
             }
         }
-        if (count >= 10 && count <= 100){
-            Debug.Log(count);
-        }
-        return count >= 10 && count <= 100;
+        Vailidity = 10 <= count && count <= 100;
     }
 
     public Dictionary<string, Func<int, bool>> GenerateTempRuleSet() {
@@ -130,7 +127,7 @@ public class GameControl : MonoBehaviour
             UsedSets.Add(ruleset);
             var randomElement = ruleset.ElementAt(rnd.Next(ruleset.Count));
             TempRuleSet.Add(randomElement.Key, randomElement.Value);
-            for (int i = 1; i <= NumOfRules; i++){
+            for (int i = 1; i < NumOfRules; i++){
                 ruleset = AllRules[rnd.Next(AllRules.Count)];
                 while (UsedSets.Contains(ruleset)) {ruleset = AllRules[rnd.Next(AllRules.Count)]; }
                 UsedSets.Add(ruleset);
@@ -145,7 +142,9 @@ public class GameControl : MonoBehaviour
             int randIndex = rnd.Next(AllRules.Count);
             Dictionary<string, Func<int, bool>> ruleset = AllRules[randIndex];
             UsedNumber[ruleset] = 1;
-            for (int i = 1; i <= NumOfRules; i++){
+            randomElement = ruleset.ElementAt(rnd.Next(ruleset.Count));
+            TempRuleSet.Add(randomElement.Key, randomElement.Value);
+            for (int i = 1; i < NumOfRules; i++){
                 ruleset = AllRules[rnd.Next(AllRules.Count)];
                 while (UsedNumber[ruleset] > 1) {ruleset = AllRules[rnd.Next(AllRules.Count)];}
                 UsedNumber[ruleset] += 1;
@@ -158,11 +157,16 @@ public class GameControl : MonoBehaviour
     }
 
     public void GenerateRuleSet(){
+        int count = 0;
+        bool Validity = false;
         UsedRules = new Dictionary<string, Func<int, bool>> { };
         PossibleRules = new Dictionary<string, Func<int, bool>> { };
         Dictionary<string, Func<int,bool>> TempRuleSet = GenerateTempRuleSet();
-        while (!CheckRuleValidity(TempRuleSet)){
+        CheckRuleValidity(in TempRuleSet, out Validity, out count);
+        while (!Validity){
+            TempRuleSet = new Dictionary<string, Func<int,bool>> {};
             TempRuleSet = GenerateTempRuleSet();
+            CheckRuleValidity(in TempRuleSet, out Validity, out count);
         }
         foreach (var kvp in TempRuleSet){
             UsedRules[kvp.Key] = kvp.Value;
@@ -173,13 +177,20 @@ public class GameControl : MonoBehaviour
         for (int i=0; i<NumOfGivenRules-NumOfRules; i++){
             Dictionary<string, Func<int,bool>> ruleset = AllRules[rnd.Next(AllRules.Count)];
             randomElement = ruleset.ElementAt(rnd.Next(ruleset.Count));
-            if (!PossibleRules.ContainsKey(randomElement.Key)){
-                PossibleRules.Add(randomElement.Key, randomElement.Value);
+            while (PossibleRules.ContainsKey(randomElement.Key)){
+                randomElement = ruleset.ElementAt(rnd.Next(ruleset.Count));
             }
+            PossibleRules.Add(randomElement.Key, randomElement.Value);
         }
-        foreach (var kvp in PossibleRules){
-            Debug.Log(kvp.Key);
+        PossibleRules = PossibleRules.OrderBy(x => Guid.NewGuid()).ToDictionary(item => item.Key, item => item.Value);
+        foreach (var pair in UsedRules){
+            Debug.Log(pair.Key);
         }
+        for (int i=0; i<20; i++){Debug.Log("\n");}
+        foreach (var pair in PossibleRules){
+            Debug.Log(pair.Key);
+        }
+        Debug.Log(count);
     }
 
     public void CheckNumber (){
@@ -220,13 +231,13 @@ public class GameControl : MonoBehaviour
 
     public static bool SumIsSquare(int num) {
         int sum = SumOfDigits(num);
-        List<int> squares = new List<int> { 1, 4, 9, 16, 25, 36, 49 };
+        List<int> squares = new List<int> {0, 1, 4, 9, 16, 25, 36, 49 };
         return squares.Contains(sum);
     }
 
     public static bool SumIsTriangular(int num) {
         int sum = SumOfDigits(num);
-        List<int> triangles = new List<int> { 1, 3, 6, 10, 15, 21, 28, 36, 45 };
+        List<int> triangles = new List<int> {0, 1, 3, 6, 10, 15, 21, 28, 36, 45 };
         return triangles.Contains(sum);
     }
 

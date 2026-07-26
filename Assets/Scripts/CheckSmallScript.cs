@@ -12,8 +12,6 @@ public class CheckSmallScript : MonoBehaviour
     {
         Control = GameObject.Find("GameController").GetComponent<GameControl>();
         result = Control.GuessResults[Control.GuessResults.Count-1];
-        Debug.Log(result.Count);
-        Debug.Log(Convert.ToInt32((gameObject.name[gameObject.name.Length-1]).ToString()));
         gameObject.GetComponent<Image>().sprite = Resources.Load<Sprite>($"Check{result[Convert.ToInt32((gameObject.name[gameObject.name.Length-1]).ToString())]}");
     }
 
