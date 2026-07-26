@@ -24,6 +24,11 @@ public class GameControl : MonoBehaviour
     
     void Awake()
     {
+        GameInfo Gameinfo = GameObject.Find("GameInfoTracker").GetComponent<GameInfo>();
+        List<int> gameinfo = Gameinfo.GetParameters();
+        TotalGuesses = gameinfo[2];
+        NumOfDigits = gameinfo[0];
+        NumOfRules = gameinfo[1];
         GuessesRemaining = TotalGuesses;
         UpdateGuessesRemaining(0);
         Guesses = GameObject.Find("PastGuesses").GetComponent<GuessesList>();
